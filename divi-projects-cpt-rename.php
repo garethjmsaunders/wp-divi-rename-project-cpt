@@ -24,17 +24,16 @@ function enqueue_custom_admin_assets() {
     wp_enqueue_style('custom-admin-css', plugins_url('/custom-admin.css', __FILE__));
 }
 
-// Create the admin menu item
+// Create the admin menu item as a submenu item of Settings
 add_action('admin_menu', 'divi_projects_cpt_rename_add_admin_menu');
 function divi_projects_cpt_rename_add_admin_menu() {
-    add_menu_page(
-        'Divi - Rename Projects CPT Settings',   // Page title
-        'Rename Divi Projects',                  // Menu title
-        'manage_options',                        // Capability
-        'divi_projects_cpt_rename',              // Menu slug
-        'divi_projects_cpt_rename_options_page', // Callback function
-        'dashicons-edit-large',                        // Icon URL
-        99                                       // Position
+    add_options_page(
+        'Divi - Rename Projects CPT Settings',   // $page_title (string)
+        'Rename Divi Projects',                  // $menu_title (string)
+        'manage_options',                        // $capability (string)
+        'divi_projects_cpt_rename',              // $menu_slug (string)
+        'divi_projects_cpt_rename_options_page', // $callback_function (callable)
+        null                                     // $position (int|float)
     );
 }
 
