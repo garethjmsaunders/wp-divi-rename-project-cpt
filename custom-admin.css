@@ -1,0 +1,25 @@
+.divi-purple {
+    background-color: #6c2eb9;
+    color: white;
+    padding: 1em !important;
+}
+
+#menu_icon_dropdown {
+    font-family: 'dashicons';
+}
+
+#menu_icon_dropdown option {
+    font-family: 'dashicons';
+}
+
+#menu_icon_dropdown.dashicons-admin-home:before {
+    content: "\f102";
+}
+
+#menu_icon_dropdown.dashicons-admin-site:before {
+    content: "\f319";
+}
+
+#menu_icon_dropdown.dashicons-admin-media:before {
+    content: "\f104";
+}
