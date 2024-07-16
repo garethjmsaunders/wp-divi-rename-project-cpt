@@ -1,20 +1,37 @@
 <?php
 /*
- * Plugin Name:         v4.1 Rename Divi Projects post type
+ * Plugin Name:         Rename Divi Projects post type
  * Version:             2.0.0-alpha
  * Plugin URI:          https://github.com/garethjmsaunders/wp-divi-customise-project
- * Description:         Rename Divi Projects custom post type - A plugin to rename the Divi theme custom post type "Project" to a user-defined name.
- * Author:              Digital Shed45 | Gareth J M Saunders
+ * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
+ * Author:              Digital Shed45 - Gareth J M Saunders
  * Author URI:          https://digitalshed45.co.uk
- * Requires at least:   6.5
- * Tested up to:        6.5.4
+ * Requires at least:   5.3
+ * Tested up to:        6.5.5
  * License:             GPL3
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:         customise-divi-project
  */
 
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
+}
+
+// Check if Divi theme is active
+function check_if_divi_is_active() {
+    $theme = wp_get_theme();
+    if ( 'Divi' !== $theme->get( 'Name' ) && 'Divi' !== $theme->get( 'Template' ) ) {
+        add_action('admin_notices', 'divi_not_active_notice');
+    }
+}
+add_action('admin_init', 'check_if_divi_is_active');
+
+// Display admin notice if Divi is not active
+function divi_not_active_notice() {
+    ?>
+    <div class="notice notice-error">
+        <p><?php _e( 'The Divi theme is not active. This plugin requires the Divi theme to function properly.', 'textdomain' ); ?></p>
+    </div>
+    <?php
 }
 
 add_action('admin_enqueue_scripts', 'enqueue_custom_admin_assets');
