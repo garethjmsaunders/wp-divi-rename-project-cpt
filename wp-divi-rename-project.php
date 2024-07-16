@@ -166,25 +166,42 @@ function divi_projects_cpt_rename_settings_init() {
     );
 }
 
+// Sanitize settings function v2.0 -- all fields
 function divi_projects_cpt_rename_sanitize_settings($settings) {
-    if (isset($settings['slug'])) {
-        // Sanitize the slug to ensure it's lowercase and uses dashes
-        $settings['slug'] = sanitize_title_with_dashes($settings['slug']);
-    }
-    if (isset($settings['category_slug'])) {
-        // Sanitize the category slug to ensure it's lowercase and uses dashes
-        $settings['category_slug'] = sanitize_title_with_dashes($settings['category_slug']);
-    }
-    if (isset($settings['tag_slug'])) {
-        // Sanitize the tag slug to ensure it's lowercase and uses dashes
-        $settings['tag_slug'] = sanitize_title_with_dashes($settings['tag_slug']);
+    // Sanitize each setting field
+    $sanitized_settings = array();
+
+    foreach ($settings as $key => $value) {
+        switch ($key) {
+            case 'singular_name':
+            case 'plural_name':
+            case 'category_singular_name':
+            case 'category_plural_name':
+            case 'tag_singular_name':
+            case 'tag_plural_name':
+                $sanitized_settings[$key] = sanitize_text_field($value);
+                break;
+            case 'slug':
+            case 'category_slug':
+            case 'tag_slug':
+                // Sanitize the slugs to ensure they are lowercase and use dashes
+                $sanitized_settings[$key] = sanitize_title_with_dashes($value);
+                break;
+            case 'menu_icon':
+                // Additional validation if needed
+                $sanitized_settings[$key] = esc_attr($value);
+                break;
+            default:
+                // Handle other settings as needed
+                $sanitized_settings[$key] = wp_kses_post($value);
+                break;
+        }
     }
 
-    // Add other sanitization as needed
-    
-    return $settings;
+    return $sanitized_settings;
 }
 
+// Render fields on admin settings page
 function divi_projects_cpt_rename_singular_name_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
@@ -792,4 +809,3 @@ function change_divi_projects_cpt() {
         ],
     ]);
 }
-?>
