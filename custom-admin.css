@@ -1,8 +1,40 @@
-.divi-purple {
-    background-color: #6c2eb9;
-    color: white;
-    padding: 1em !important;
+
+.header-gradient {
+    
+    padding: 1em;
+    margin-top: 1em;
 }
+
+h1.divi-purple {
+    background: rgb(108,46,185);
+    background: linear-gradient(90deg, rgba(108,46,185,1) 45%, rgba(246,205,4,1) 100%);
+    color: white;
+    font-size: 23px;
+    margin: 0.7em 0.7em 0 0;
+    padding: 1em;
+}
+
+p.digitalshed45 {
+    background-color: #f0f0f1;
+    margin: 0;
+    padding: 1em 1em 1em 1.65em;
+}
+
+p.digitalshed45,
+p.digitalshed45 a {
+    font-size: 14px;
+    color: #353740;
+}
+
+p.digitalshed45 a:hover {
+    text-decoration: none;
+}
+
+
+
+
+
+/* dashicons - not working */
 
 #menu_icon_dropdown {
     font-family: 'dashicons';

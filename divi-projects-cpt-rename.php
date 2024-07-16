@@ -632,10 +632,8 @@ function divi_projects_cpt_rename_tag_slug_render() {
 function divi_projects_cpt_rename_options_page() {
     ?>
     <form action="options.php" method="post">
-        <div class="wrap">
-            <h1 class="divi-purple">Rename Divi Projects post type</h1>
-            <p>Plugin by <a href="https://digitalshed45.co.uk/">Digital Shed45</a></p>
-        </div>
+        <h1 class="divi-purple">Rename Divi Projects post type</h1>
+        <p class="digitalshed45">by <a href="https://digitalshed45.co.uk/">Digital Shed45</a></p>            
         <?php
         settings_fields('divi_projects_cpt_rename_settings_group');
         do_settings_sections('divi_projects_cpt_rename');
