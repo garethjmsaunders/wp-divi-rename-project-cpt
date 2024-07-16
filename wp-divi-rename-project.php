@@ -16,23 +16,15 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
-// Check if Divi theme is active
-function check_if_divi_is_active() {
+// Check if Divi theme is active and deactivate plugin if not
+function check_divi_theme_on_activation() {
     $theme = wp_get_theme();
     if ( 'Divi' !== $theme->get( 'Name' ) && 'Divi' !== $theme->get( 'Template' ) ) {
-        add_action('admin_notices', 'divi_not_active_notice');
+        deactivate_plugins( plugin_basename( __FILE__ ) );
+        wp_die( __( 'This plugin requires the Divi theme from Elegant Themes to be active. Please activate the Divi theme and try again.', 'textdomain' ), 'Plugin Activation Error', array( 'back_link' => true ) );
     }
 }
-add_action('admin_init', 'check_if_divi_is_active');
-
-// Display admin notice if Divi is not active
-function divi_not_active_notice() {
-    ?>
-    <div class="notice notice-error">
-        <p><?php _e( 'The Divi theme is not active. This plugin requires the Divi theme to function properly.', 'textdomain' ); ?></p>
-    </div>
-    <?php
-}
+register_activation_hook( __FILE__, 'check_divi_theme_on_activation' );
 
 add_action('admin_enqueue_scripts', 'enqueue_custom_admin_assets');
 function enqueue_custom_admin_assets() {
