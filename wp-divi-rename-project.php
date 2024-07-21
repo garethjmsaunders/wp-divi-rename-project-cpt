@@ -188,8 +188,15 @@ function divi_projects_cpt_rename_settings_init() {
     add_action('admin_init', 'divi_projects_cpt_rename_init');
 }
 
-// Sanitize settings function v2.0 -- all fields
+// Sanitize settings
 function divi_projects_cpt_rename_sanitize_settings($settings) {
+
+    // Verify nonce
+    if (!isset($_POST['divi_projects_cpt_rename_options_nonce']) || !wp_verify_nonce($_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify')) {
+        // Handle nonce verification failure (optional)
+        wp_die('Nonce verification failed.');
+    }
+
     // Sanitize each setting field
     $sanitized_settings = array();
 
@@ -696,6 +703,7 @@ function divi_projects_cpt_rename_options_page() {
         <?php
         settings_fields('divi_projects_cpt_rename_settings_group');
         do_settings_sections('divi_projects_cpt_rename');
+        wp_nonce_field('divi_projects_cpt_rename_options_verify', 'divi_projects_cpt_rename_options_nonce'); // NONCE
         submit_button();
         ?>
         <p class="description">To <strong>reset</strong> this post type to the default Project settings deactivate the <strong>Rename Divi Projects post type</strong> plugin on the <a href="<?php echo admin_url('plugins.php'); ?>">Plugins</a> page.</p>
