@@ -1,3 +1,4 @@
+
 jQuery(document).ready(function($) {
     function formatState(state) {
         if (!state.id) {
@@ -9,9 +10,9 @@ jQuery(document).ready(function($) {
         return $state;
     }
 
+    // https://select2.org/
     $('#menu-icon-select').select2({
         templateResult: formatState,
-        templateSelection: formatState,
-        width: '100%' // Adjust as needed
+        templateSelection: formatState
     });
 });
