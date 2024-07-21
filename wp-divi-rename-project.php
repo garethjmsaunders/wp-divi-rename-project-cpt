@@ -7,7 +7,7 @@
  * Author:              Digital Shed45 - Gareth J M Saunders
  * Author URI:          https://digitalshed45.co.uk
  * Requires at least:   5.3
- * Tested up to:        6.5.5
+ * Tested up to:        6.6
  * License:             GPL3
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  */
