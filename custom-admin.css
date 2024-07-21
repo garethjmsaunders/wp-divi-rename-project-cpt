@@ -7,7 +7,7 @@
 
 h1.divi-purple {
     background: rgb(108,46,185);
-    background: linear-gradient(90deg, rgba(108,46,185,1) 45%, rgba(246,205,4,1) 100%);
+    background: linear-gradient(90deg, rgba(108,46,185,1) 45%, rgba(246,205,4,1) 81%);
     color: white;
     font-size: 23px;
     margin: 0.7em 0.7em 0 0;
@@ -18,11 +18,12 @@ h1.divi-purple {
     float: right;
 }
 .ds45 a {
-    color: black;
+    color: #353740;
     text-decoration: none;
 }
 .ds45 a:hover {
-    color: white;
+    color: #000;
+    text-decoration: underline;
 }
 
 
