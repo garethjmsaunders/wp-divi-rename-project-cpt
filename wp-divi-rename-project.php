@@ -846,4 +846,7 @@ function divi_projects_cpt_rename_register_new_values() {
             'with_front'    => true,
         ],
     ]);
+
+    // Flush permalinks
+    flush_rewrite_rules();
 }
