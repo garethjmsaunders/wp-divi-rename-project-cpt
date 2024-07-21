@@ -14,44 +14,40 @@ h1.divi-purple {
     padding: 1em;
 }
 
-p.digitalshed45 {
-    background-color: #f0f0f1;
-    margin: 0;
-    padding: 1em 1em 1em 1.65em;
+.ds45 {
+    float: right;
 }
-
-p.digitalshed45,
-p.digitalshed45 a {
-    font-size: 14px;
-    color: #353740;
-}
-
-p.digitalshed45 a:hover {
+.ds45 a {
+    color: black;
     text-decoration: none;
 }
-
-
-
-
-
-/* dashicons - not working */
-
-#menu_icon_dropdown {
-    font-family: 'dashicons';
+.ds45 a:hover {
+    color: white;
 }
 
-#menu_icon_dropdown option {
-    font-family: 'dashicons';
+
+/* Select */
+
+/* Ensure the dashicons font is loaded */
+/*@import url('https://s.w.org/wp-includes/css/dashicons.css?ver=6.0');*/
+
+/* Set the width of the Select2 container */
+.select2-container {
+    width: 200px !important;
 }
 
-#menu_icon_dropdown.dashicons-admin-home:before {
-    content: "\f102";
+/* Style the option elements with padding for the icons */
+#menu-icon-select option {
+    padding-left: 25px;
+    display: flex;
+    align-items: center;
 }
 
-#menu_icon_dropdown.dashicons-admin-site:before {
-    content: "\f319";
-}
-
-#menu_icon_dropdown.dashicons-admin-media:before {
-    content: "\f104";
+/* Add Dashicons before the text */
+#menu-icon-select option:before {
+    font-family: dashicons;
+    content: attr(data-icon);
+    margin-right: 8px;
+    display: inline-block;
+    font-size: 1.5em;
 }

@@ -12,8 +12,9 @@
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  */
 
+// Exit if plugin accessed directly
 if (!defined('ABSPATH')) {
-    exit; // Exit if accessed directly
+    exit;
 }
 
 // Check if Divi theme is active and deactivate plugin if not
@@ -26,6 +27,7 @@ function check_divi_theme_on_activation() {
 }
 register_activation_hook( __FILE__, 'check_divi_theme_on_activation' );
 
+// Enqueue CSS
 add_action('admin_enqueue_scripts', 'enqueue_custom_admin_assets');
 function enqueue_custom_admin_assets() {
     wp_enqueue_style('dashicons');
@@ -164,6 +166,26 @@ function divi_projects_cpt_rename_settings_init() {
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_tag_settings_section'
     );
+
+    // Hook into the settings update process
+    add_action('update_option_divi_projects_cpt_rename_settings', 'flush_permalinks_after_settings_update', 10, 2);
+
+    // Function to flush permalinks
+    function flush_permalinks_after_settings_update($old_value, $new_value) {
+        // Check if the values have changed to avoid unnecessary flushes
+        if ($old_value !== $new_value) {
+            flush_rewrite_rules();
+        }
+    }
+
+    // Initialize the plugin settings
+    function divi_projects_cpt_rename_init() {
+        // Your existing initialization code...
+
+        // Register the settings
+        register_setting('divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings');
+    }
+    add_action('admin_init', 'divi_projects_cpt_rename_init');
 }
 
 // Sanitize settings function v2.0 -- all fields
@@ -201,26 +223,28 @@ function divi_projects_cpt_rename_sanitize_settings($settings) {
     return $sanitized_settings;
 }
 
-// Render fields on admin settings page
+// Singular Name
 function divi_projects_cpt_rename_singular_name_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[singular_name]" value="<?php echo isset($options['singular_name']) ? esc_attr($options['singular_name']) : ''; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[singular_name]" value="<?php echo isset($options['singular_name']) ? esc_attr($options['singular_name']) : 'Project'; ?>">
     <p class="description">e.g. <kbd>Project</kbd></p>
     <?php
 }
 
+// Plural Name
 function divi_projects_cpt_rename_plural_name_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[plural_name]" value="<?php echo isset($options['plural_name']) ? esc_attr($options['plural_name']) : ''; ?>">
-    <p class="description">e.g. <kbd>Projects</kbd> (Also used for the Menu.)</p>
+    <input type="text" name="divi_projects_cpt_rename_settings[plural_name]" value="<?php echo isset($options['plural_name']) ? esc_attr($options['plural_name']) : 'Projects'; ?>">
+    <p class="description">e.g. <kbd>Projects</kbd></p>
     <?php
 }
 
+// Slug
 function divi_projects_cpt_rename_slug_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
-    $slug = isset($options['slug']) ? $options['slug'] : '';
+    $slug = isset($options['slug']) ? $options['slug'] : 'project';
 
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[slug]" value="<?php echo esc_attr($slug); ?>">
@@ -228,10 +252,10 @@ function divi_projects_cpt_rename_slug_render() {
     <?php
 }
 
-/* This is the dropdown version */
+// Menu Icon
 function divi_projects_cpt_rename_menu_icon_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
-    $selected_icon = isset($options['menu_icon']) ? esc_attr($options['menu_icon']) : '';
+    $selected_icon = isset($options['menu_icon']) ? esc_attr($options['menu_icon']) : 'dashicons-portfolio';
     
     $menu_icons = [
         'Admin Menu' => [
@@ -243,7 +267,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-filter'                      => 'filter',
             'dashicons-admin-generic'               => 'generic',
             'dashicons-admin-home'                  => 'home',
-            'dashicons-admin-link'                  => 'links',
+            'dashicons-admin-links'                  => 'links',
             'dashicons-admin-media'                 => 'media',
             'dashicons-menu'                        => 'menu',
             'dashicons-menu-alt'                    => 'menu (alt)',
@@ -253,7 +277,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-admin-network'               => 'network',
             'dashicons-admin-page'                  => 'page',
             'dashicons-admin-plugins'               => 'plugins',
-            'dashicons-admin-plugins-admin-checked' => 'plugins checked',
+            'dashicons-plugins-checked'             => 'plugins checked',
             'dashicons-admin-post'                  => 'post',
             'dashicons-admin-settings'              => 'settings',
             'dashicons-admin-site'                  => 'site',
@@ -592,79 +616,89 @@ function divi_projects_cpt_rename_menu_icon_render() {
         ],
     ];
     ?>
-    <select name="divi_projects_cpt_rename_settings[menu_icon]">
-        <?php foreach ($menu_icons as $group => $icons) : ?>
-            <optgroup label="<?php echo esc_attr($group); ?>">
-                <?php foreach ($icons as $icon => $label) : ?>
-                    <option value="<?php echo esc_attr($icon); ?>" <?php selected($selected_icon, $icon); ?>>
-                        <?php echo esc_html($label); ?>
-                    </option>
-                <?php endforeach; ?>
-            </optgroup>
-        <?php endforeach; ?>
-    </select>
-    <p class="description">See <a href="https://developer.wordpress.org/resource/dashicons/#layout" target="_blank">Dashicons</a> (opens new window)</p>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<select name="divi_projects_cpt_rename_settings[menu_icon]" id="menu-icon-select">
+    <?php foreach ($menu_icons as $group => $icons) : ?>
+        <optgroup label="<?php echo esc_attr($group); ?>">
+            <?php foreach ($icons as $icon => $label) : ?>
+                <option value="<?php echo esc_attr($icon); ?>" <?php selected($selected_icon, $icon); ?>>
+                    <?php echo esc_html($label); ?>
+                </option>
+            <?php endforeach; ?>
+        </optgroup>
+    <?php endforeach; ?>
+</select>
+    <p class="description">See <a href="https://developer.wordpress.org/resource/dashicons/#layout" target="_blank">Dashicons</a> (opens new window)<br>Divi's default menu icon is <kbd>Admin Menu &gt; Post</kbd>.</p>
     <?php
     }
 
+// Category Singular Name
 function divi_projects_cpt_rename_category_singular_name_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[category_singular_name]" value="<?php echo isset($options['category_singular_name']) ? esc_attr($options['category_singular_name']) : ''; ?>">
-    <p class="description">e.g. <kbd>Category</kbd> or <kbd>Project Category</kbd></p>
+    <input type="text" name="divi_projects_cpt_rename_settings[category_singular_name]" value="<?php echo isset($options['category_singular_name']) ? esc_attr($options['category_singular_name']) : 'Project Category'; ?>">
+    <p class="description">e.g. <kbd>Project Category</kbd> or <kbd>Category</kbd></p>
     <?php
 }
 
+// Category Plural Name
 function divi_projects_cpt_rename_category_plural_name_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[category_plural_name]" value="<?php echo isset($options['category_plural_name']) ? esc_attr($options['category_plural_name']) : ''; ?>">
-    <p class="description">e.g. <kbd>Categories</kbd> or <kbd>Project Categories</kbd></p>
+    <input type="text" name="divi_projects_cpt_rename_settings[category_plural_name]" value="<?php echo isset($options['category_plural_name']) ? esc_attr($options['category_plural_name']) : 'Project Categories'; ?>">
+    <p class="description">e.g. <kbd>Project Categories</kbd> or <kbd>Categories</kbd></p>
     <?php
 }
 
+// Category Slug
 function divi_projects_cpt_rename_category_slug_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[category_slug]" value="<?php echo isset($options['category_slug']) ? esc_attr($options['category_slug']) : ''; ?>">
-    <p class="description">e.g. <code>project-category</code></p>
+    <input type="text" name="divi_projects_cpt_rename_settings[category_slug]" value="<?php echo isset($options['category_slug']) ? esc_attr($options['category_slug']) : 'project_category'; ?>">
+    <p class="description">e.g. <code>project-category</code><br>Divi's default category slug is <kbd>project_category</kbd> with an underscore.</p>
     <?php
 }
 
+// Tag Singular Name
 function divi_projects_cpt_rename_tag_singular_name_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[tag_singular_name]" value="<?php echo isset($options['tag_singular_name']) ? esc_attr($options['tag_singular_name']) : ''; ?>">
-    <p class="description">e.g. <kbd>Tag</kbd> or <kbd>Project Tag</kbd></p>
+    <input type="text" name="divi_projects_cpt_rename_settings[tag_singular_name]" value="<?php echo isset($options['tag_singular_name']) ? esc_attr($options['tag_singular_name']) : 'Project Tag'; ?>">
+    <p class="description">e.g. <kbd>Project Tag</kbd> or <kbd>Tag</kbd></p>
     <?php
 }
 
+// Tag Plural Name
 function divi_projects_cpt_rename_tag_plural_name_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[tag_plural_name]" value="<?php echo isset($options['tag_plural_name']) ? esc_attr($options['tag_plural_name']) : ''; ?>">
-    <p class="description">e.g. <kbd>Tags</kbd> or <kbd>Project Tags</kbd></p>
+    <input type="text" name="divi_projects_cpt_rename_settings[tag_plural_name]" value="<?php echo isset($options['tag_plural_name']) ? esc_attr($options['tag_plural_name']) : 'Project Tags'; ?>">
+    <p class="description">e.g. <kbd>Project Tags</kbd> or <kbd>Tags</kbd></p>
     <?php
 }
 
+// Tag Slug
 function divi_projects_cpt_rename_tag_slug_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[tag_slug]" value="<?php echo isset($options['tag_slug']) ? esc_attr($options['tag_slug']) : ''; ?>">
-    <p class="description">e.g. <code>project-tag</code></p>
+    <input type="text" name="divi_projects_cpt_rename_settings[tag_slug]" value="<?php echo isset($options['tag_slug']) ? esc_attr($options['tag_slug']) : 'project_tag'; ?>">
+    <p class="description">e.g. <code>project-tag</code><br>Divi's default tag slug is <kbd>project_tag</kbd> with an underscore.</p>
     <?php
 }
 
 function divi_projects_cpt_rename_options_page() {
     ?>
     <form action="options.php" method="post">
-        <h1 class="divi-purple">Rename Divi Projects post type</h1>
-        <p class="digitalshed45">by <a href="https://digitalshed45.co.uk/">Digital Shed45</a></p>            
+        <h1 class="divi-purple">Rename Divi Projects post type <span class="ds45"><a href="https://digitalshed45.co.uk/">Digital Shed45</a></span></h1>            
         <?php
         settings_fields('divi_projects_cpt_rename_settings_group');
         do_settings_sections('divi_projects_cpt_rename');
         submit_button();
         ?>
+        <p class="description">To <strong>reset</strong> this post type to the default Project settings deactivate the <strong>Rename Divi Projects post type</strong> plugin on the <a href="<?php echo admin_url('plugins.php'); ?>">Plugins</a> page.</p>
     </form>
     <?php
 }
@@ -720,7 +754,7 @@ function get_tag_slug() {
     return isset($options['tag_slug']) ? $options['tag_slug'] : 'project_tag';
 }
 
-// Change the Divi Projects CPT
+// Change the Divi Projects custom post type
 add_action('init', 'change_divi_projects_cpt');
 function change_divi_projects_cpt() {
     $singular_name = get_singular_name();

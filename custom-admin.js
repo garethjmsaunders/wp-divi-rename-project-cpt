@@ -1,16 +1,17 @@
 jQuery(document).ready(function($) {
-    $('#menu_icon_dropdown').each(function() {
-        var select = $(this);
-        select.find('option').each(function() {
-            var iconClass = $(this).data('icon');
-            if (iconClass) {
-                $(this).addClass(iconClass);
-            }
-        });
+    function formatState(state) {
+        if (!state.id) {
+            return state.text;
+        }
+        var $state = $(
+            '<span><span class="dashicons ' + state.id + '"></span> ' + state.text + '</span>'
+        );
+        return $state;
+    }
 
-        select.on('change', function() {
-            var selectedOption = $(this).find('option:selected');
-            select.attr('class', '').addClass(selectedOption.data('icon'));
-        }).trigger('change');
+    $('#menu-icon-select').select2({
+        templateResult: formatState,
+        templateSelection: formatState,
+        width: '100%' // Adjust as needed
     });
 });
