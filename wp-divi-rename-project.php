@@ -18,18 +18,18 @@ if (!defined('ABSPATH')) {
 }
 
 // Check if Divi theme is active and deactivate plugin if not
-function check_divi_theme_on_activation() {
+function divi_projects_cpt_rename_check_divi_theme_on_activation() {
     $theme = wp_get_theme();
     if ( 'Divi' !== $theme->get( 'Name' ) && 'Divi' !== $theme->get( 'Template' ) ) {
         deactivate_plugins( plugin_basename( __FILE__ ) );
         wp_die( __( 'This plugin requires the Divi theme from Elegant Themes to be active. Please activate the Divi theme and try again.', 'textdomain' ), 'Plugin Activation Error', array( 'back_link' => true ) );
     }
 }
-register_activation_hook( __FILE__, 'check_divi_theme_on_activation' );
+register_activation_hook( __FILE__, 'divi_projects_cpt_rename_check_divi_theme_on_activation' );
 
 // Enqueue CSS
-add_action('admin_enqueue_scripts', 'enqueue_custom_admin_assets');
-function enqueue_custom_admin_assets() {
+add_action('admin_enqueue_scripts', 'divi_projects_cpt_rename_enqueue_custom_admin_assets');
+function divi_projects_cpt_rename_enqueue_custom_admin_assets() {
     wp_enqueue_style('dashicons');
     wp_enqueue_script('custom-admin-js', plugins_url('/custom-admin.js', __FILE__), ['jquery'], null, true);
     wp_enqueue_style('custom-admin-css', plugins_url('/custom-admin.css', __FILE__));
@@ -48,9 +48,8 @@ function divi_projects_cpt_rename_add_admin_menu() {
     );
 }
 
-// Add settings link to plugins page
+// Add settings link to Plugins page
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'divi_projects_cpt_rename_action_links');
-
 function divi_projects_cpt_rename_action_links($links) {
     $settings_link = '<a href="admin.php?page=divi_projects_cpt_rename">' . __('Settings') . '</a>';
     // Prepend the settings link to the existing links array
@@ -168,10 +167,10 @@ function divi_projects_cpt_rename_settings_init() {
     );
 
     // Hook into the settings update process
-    add_action('update_option_divi_projects_cpt_rename_settings', 'flush_permalinks_after_settings_update', 10, 2);
+    add_action('update_option_divi_projects_cpt_rename_settings', 'divi_projects_cpt_rename_flush_permalinks_after_settings_update', 10, 2);
 
     // Function to flush permalinks
-    function flush_permalinks_after_settings_update($old_value, $new_value) {
+    function divi_projects_cpt_rename_flush_permalinks_after_settings_update($old_value, $new_value) {
         // Check if the values have changed to avoid unnecessary flushes
         if ($old_value !== $new_value) {
             flush_rewrite_rules();
@@ -180,8 +179,6 @@ function divi_projects_cpt_rename_settings_init() {
 
     // Initialize the plugin settings
     function divi_projects_cpt_rename_init() {
-        // Your existing initialization code...
-
         // Register the settings
         register_setting('divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings');
     }
@@ -226,7 +223,6 @@ function divi_projects_cpt_rename_sanitize_settings($settings) {
                 break;
         }
     }
-
     return $sanitized_settings;
 }
 
@@ -712,69 +708,69 @@ function divi_projects_cpt_rename_options_page() {
 }
 
 // Get settings values
-function get_singular_name() {
+function divi_projects_cpt_rename_get_singular_name() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['singular_name']) ? $options['singular_name'] : 'Project';
 }
 
-function get_plural_name() {
+function divi_projects_cpt_rename_get_plural_name() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['plural_name']) ? $options['plural_name'] : 'Projects';
 }
 
-function get_slug() {
+function divi_projects_cpt_rename_get_slug() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['slug']) ? $options['slug'] : 'project';
 }
 
-function get_menu_icon() {
+function divi_projects_cpt_rename_get_menu_icon() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['menu_icon']) ? $options['menu_icon'] : 'dashicons-portfolio';
 }
 
-function get_category_singular_name() {
+function divi_projects_cpt_rename_get_category_singular_name() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['category_singular_name']) ? $options['category_singular_name'] : 'Project Category';
 }
 
-function get_category_plural_name() {
+function divi_projects_cpt_rename_get_category_plural_name() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['category_plural_name']) ? $options['category_plural_name'] : 'Project Categories';
 }
 
-function get_category_slug() {
+function divi_projects_cpt_rename_get_category_slug() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['category_slug']) ? $options['category_slug'] : 'project_category';
 }
 
-function get_tag_singular_name() {
+function divi_projects_cpt_rename_get_tag_singular_name() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['tag_singular_name']) ? $options['tag_singular_name'] : 'Project Tag';
 }
 
-function get_tag_plural_name() {
+function divi_projects_cpt_rename_get_tag_plural_name() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['tag_plural_name']) ? $options['tag_plural_name'] : 'Project Tags';
 }
 
-function get_tag_slug() {
+function divi_projects_cpt_rename_get_tag_slug() {
     $options = get_option('divi_projects_cpt_rename_settings');
     return isset($options['tag_slug']) ? $options['tag_slug'] : 'project_tag';
 }
 
 // Change the Divi Projects custom post type
-add_action('init', 'change_divi_projects_cpt');
-function change_divi_projects_cpt() {
-    $singular_name = get_singular_name();
-    $plural_name = get_plural_name();
-    $slug = get_slug();
-    $menu_icon = get_menu_icon();
-    $category_singular_name = get_category_singular_name();
-    $category_plural_name = get_category_plural_name();
-    $category_slug = get_category_slug();
-    $tag_singular_name = get_tag_singular_name();
-    $tag_plural_name = get_tag_plural_name();
-    $tag_slug = get_tag_slug();
+add_action('init', 'divi_projects_cpt_rename_register_new_values');
+function divi_projects_cpt_rename_register_new_values() {
+    $singular_name          = divi_projects_cpt_rename_get_singular_name();
+    $plural_name            = divi_projects_cpt_rename_get_plural_name();
+    $slug                   = divi_projects_cpt_rename_get_slug();
+    $menu_icon              = divi_projects_cpt_rename_get_menu_icon();
+    $category_singular_name = divi_projects_cpt_rename_get_category_singular_name();
+    $category_plural_name   = divi_projects_cpt_rename_get_category_plural_name();
+    $category_slug          = divi_projects_cpt_rename_get_category_slug();
+    $tag_singular_name      = divi_projects_cpt_rename_get_tag_singular_name();
+    $tag_plural_name        = divi_projects_cpt_rename_get_tag_plural_name();
+    $tag_slug               = divi_projects_cpt_rename_get_tag_slug();
 
     register_post_type('project', [
         'labels'            => [
