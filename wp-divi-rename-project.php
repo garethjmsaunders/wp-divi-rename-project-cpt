@@ -620,9 +620,6 @@ function divi_projects_cpt_rename_menu_icon_render() {
     ];
     ?>
 
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
 <select name="divi_projects_cpt_rename_settings[menu_icon]" id="menu-icon-select">
     <?php foreach ($menu_icons as $group => $icons) : ?>
         <optgroup label="<?php echo esc_attr($group); ?>">
@@ -847,6 +844,6 @@ function divi_projects_cpt_rename_register_new_values() {
         ],
     ]);
 
-    // Flush permalinks
+    // Flush WordPress rewrite (permalink) rules
     flush_rewrite_rules();
 }
