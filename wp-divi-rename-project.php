@@ -1,13 +1,13 @@
 <?php
 /*
  * Plugin Name:         Rename Divi Projects post type
- * Version:             2.0.0-alpha
+ * Version:             2.2.0-alpha
  * Plugin URI:          https://github.com/garethjmsaunders/wp-divi-customise-project
  * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
  * Author:              Digital Shed45 - Gareth J M Saunders
  * Author URI:          https://digitalshed45.co.uk
  * Requires at least:   5.3
- * Tested up to:        6.6
+ * Tested up to:        6.6.1
  * License:             GPL3
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  */
