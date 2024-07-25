@@ -305,6 +305,24 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-embed-audio'      => 'embed audio',
             'dashicons-embed-generic'    => 'embed generic',
             'dashicons-embed-photo'      => 'embed photo',
+            'dashicons-embed-post'      => 'embed post',
+            'dashicons-embed-video'      => 'embed video',
+            'dashicons-exit'             => 'exit',
+            'dashicons-heading'          => 'heading',
+            'dashicons-html'             => 'HTML',
+            'dashicons-info-outline'     => 'info (outline)',
+            'dashicons-insert'           => 'insert',
+            'dashicons-insert-after'     => 'insert after',
+            'dashicons-insert-before'    => 'insert before',
+            'dashicons-remove'           => 'remove',
+            'dashicons-saved'            => 'saved (tick, check)',
+            'dashicons-shortcode'        => 'shortcode',
+            'dashicons-table-col-after'  => 'table column after',
+            'dashicons-table-col-before' => 'table column before',
+            'dashicons-table-col-delete' => 'table column delete',
+            'dashicons-table-row-after'  => 'table row after',
+            'dashicons-table-row-before' => 'table row before',
+            'dashicons-table-row-delete' => 'table row delete',
         ],
         'Buddicons' => [
             'dashicons-buddicons-activity'        => 'activity',
@@ -699,7 +717,7 @@ function divi_projects_cpt_rename_options_page() {
         wp_nonce_field('divi_projects_cpt_rename_options_verify', 'divi_projects_cpt_rename_options_nonce'); // NONCE
         submit_button();
         ?>
-        <p class="description">To <strong>reset</strong> this post type to the default Project settings deactivate the <strong>Rename Divi Projects post type</strong> plugin on the <a href="<?php echo admin_url('plugins.php'); ?>">Plugins</a> page.</p>
+        <p class="description">To <strong>reset</strong> this post type to the default Project settings (1) first, deactivate the <strong>Rename Divi Projects post type</strong> plugin on the <a href="<?php echo admin_url('plugins.php'); ?>">Plugins</a> page then (2) go to <kbd>Settings &gt; Permalinks</kbd> and click the Save Changes button to flush the rewrite rules cache.</p>
     </form>
     <?php
 }
