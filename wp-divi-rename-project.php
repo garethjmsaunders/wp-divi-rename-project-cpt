@@ -202,7 +202,10 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
         wp_die( __( 'You do not have sufficient permissions to perform this action.' ) );
     }
 
-    // Verify nonce (number used once) first
+    // Check whether a security token, called a "nonce" (number used once) in WordPress,
+    // is present and valid when a form is submitted. The purpose of the nonce is to ensure 
+    // that the form submission is legitimate and not a result of a  Cross-Site Request Forgery
+    // (CSRF) attack.
     if ( !isset( $_POST['divi_projects_cpt_rename_options_nonce'] ) || !wp_verify_nonce( $_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify' ) ) {
         // Handle nonce verification failure (optional)
         wp_die( 'Nonce verification failed.' );
@@ -275,8 +278,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
     $selected_icon = isset( $options['menu_icon'] ) ? esc_attr( $options['menu_icon'] ) : 'dashicons-portfolio';
 
     // Whitelisted menu icon values
-    $menu_icons = [
-        'Admin Menu' => [
+    $menu_icons = array(
+        'Admin Menu' => array(
             'dashicons-admin-appearance'            => 'appearance',
             'dashicons-admin-collapse'              => 'collapse',
             'dashicons-admin-comments'              => 'comments',
@@ -304,8 +307,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-admin-site-alt3'             => 'site (alt 3)',
             'dashicons-admin-tools'                 => 'tools',
             'dashicons-admin-users'                 => 'users'
-            ],
-        'Block Editor' => [
+        ),
+        'Block Editor' => array(
             'dashicons-align-full-width' => 'align full width',
             'dashicons-align-pull-left'  => 'align pull left',
             'dashicons-align-pull-right' => 'align pull right',
@@ -338,8 +341,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-table-row-after'  => 'table row after',
             'dashicons-table-row-before' => 'table row before',
             'dashicons-table-row-delete' => 'table row delete',
-        ],
-        'Buddicons' => [
+        ),
+        'Buddicons' => array(
             'dashicons-buddicons-activity'        => 'activity',
             'dashicons-buddicons-bbpress-logo'    => 'bbpress logo',
             'dashicons-buddicons-buddypress-logo' => 'buddypress logo',
@@ -351,16 +354,16 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-buddicons-replies'         => 'replies',
             'dashicons-buddicons-topics'          => 'topics',
             'dashicons-buddicons-tracking'        => 'tracking',
-        ],
-        'Databases' => [
+        ),
+        'Databases' => array(
             'dashicons-database'        => 'database',
             'dashicons-database-add'    => 'database add',
             'dashicons-database-remove' => 'database remove',
             'dashicons-database-export' => 'database export',
             'dashicons-database-import' => 'database import',
             'dashicons-database-view'   => 'database view',
-        ],
-        'Image Editing' => [
+        ),
+        'Image Editing' => array(
             'dashicons-image-crop'            => 'image crop',
             'dashicons-image-filter'          => 'filter',
             'dashicons-image-flip-horizontal' => 'flip horizontal',
@@ -370,8 +373,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-image-rotate-left'     => 'rotate left',
             'dashicons-image-rotate-right'    => 'rotate right',
             'dashicons-undo'                  => 'undo',
-        ],
-        'Media' => [
+        ),
+        'Media' => array(
             'dashicons-controls-skipback'    => 'skip back',
             'dashicons-controls-back'        => 'back',
             'dashicons-controls-play'        => 'play',
@@ -392,8 +395,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-media-spreadsheet'    => 'spreadsheet',
             'dashicons-media-text'           => 'text',
             'dashicons-media-video'          => 'video',
-        ],
-        'Miscellaneous' => [
+        ),
+        'Miscellaneous' => array(
             'dashicons-airplane'            => 'airplane',
             'dashicons-album'               => 'album',
             'dashicons-analytics'           => 'analytics',
@@ -468,8 +471,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-tickets-alt'         => 'tickets (alt)',
             'dashicons-upload'              => 'upload',
             'dashicons-vault'               => 'vault',
-        ],
-        'Notifications' => [
+        ),
+        'Notifications' => array(
             'dashicons-bell'        => 'bell',
             'dashicons-yes'         => 'yes',
             'dashicons-yes-alt'     => 'yes (alt) ',
@@ -486,8 +489,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-star-empty'  => 'star empty',
             'dashicons-flag'        => 'flag',
             'dashicons-warning'     => 'warning',
-        ],
-        'Post Formats' => [
+        ),
+        'Post Formats' => array(
             'dashicons-format-aside'   => 'aside',
             'dashicons-format-audio'   => 'audio',
             'dashicons-camera'         => 'camera',
@@ -503,8 +506,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-video-alt'      => 'video (alt)',
             'dashicons-video-alt2'     => 'video (alt 2)',
             'dashicons-video-alt3'     => 'video (alt 3)'
-        ],
-        'Posts Screen' => [
+        ),
+        'Posts Screen' => array(
             'dashicons-align-center' => 'align center',
             'dashicons-align-left'   => 'align left',
             'dashicons-align-none'   => 'align none',
@@ -519,8 +522,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-trash'        => 'trash',
             'dashicons-unlock'       => 'unlock',
             'dashicons-visibility'   => 'visibility',
-        ],
-        'Products' => [
+        ),
+        'Products' => array(
             'dashicons-cart'          => 'cart',
             'dashicons-cloud'         => 'cloud',
             'dashicons-feedback'      => 'feedback',
@@ -532,8 +535,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-update-alt'    => 'update (alt)',
             'dashicons-wordpress'     => 'wordpress',
             'dashicons-wordpress-alt' => 'wordpress (alt)',
-        ],
-        'Sorting' => [
+        ),
+        'Sorting' => array(
             'dashicons-arrow-down'       => 'arrow down',
             'dashicons-arrow-down-alt'   => 'arrow down (alt)',
             'dashicons-arrow-down-alt2'  => 'arrow down (alt 2)',
@@ -554,8 +557,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-move'             => 'move',
             'dashicons-randomize'        => 'randomize',
             'dashicons-sort'             => 'sort',
-        ],
-        'Social' => [
+        ),
+        'Social' => array(
             'dashicons-amazon'       => 'amazon',
             'dashicons-email'        => 'email',
             'dashicons-email-alt'    => 'email (alt)',
@@ -580,12 +583,12 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-whatsapp'     => 'whatsapp',
             'dashicons-xing'         => 'xing',
             'dashicons-youtube'      => 'youtube',
-        ],
-        'Taxonomies' => [
+        ),
+        'Taxonomies' => array(
             'dashicons-tag'      => 'tag',
             'dashicons-category' => 'category',
-        ],
-        'TinyMCE' => [
+        ),
+        'TinyMCE' => array(
             'dashicons-editor-aligncenter'      => 'align center',
             'dashicons-editor-alignleft'        => 'align left',
             'dashicons-editor-alignright'       => 'align right',
@@ -619,21 +622,21 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-editor-underline'        => 'underline',
             'dashicons-editor-unlink'           => 'unlink',
             'dashicons-editor-video'            => 'video',
-        ],
-        'Welcome Screen' => [
+        ),
+        'Welcome Screen' => array(
             'dashicons-welcome-add-page'      => 'add page',
             'dashicons-welcome-comments'      => 'comments',
             'dashicons-welcome-learn-more'    => 'learn more',
             'dashicons-welcome-view-site'     => 'view site',
             'dashicons-welcome-widgets-menus' => 'widgets menus',
             'dashicons-welcome-write-blog'    => 'write blog'
-        ],
-        'Widgets' => [
+        ),
+        'Widgets' => array(
             'dashicons-archive'  => 'archive',
             'dashicons-tagcloud' => 'tag cloud',
             'dashicons-text'     => 'text',
-        ],
-        'WordPress.org' => [
+        ),
+        'WordPress.org' => array(
             'dashicons-art'                  => 'art',
             'dashicons-clipboard'            => 'clipboard',
             'dashicons-code-standards'       => 'code-standards',
@@ -649,8 +652,8 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-tide'                 => 'tide',
             'dashicons-universal-access'     => 'universal access ',
             'dashicons-universal-access-alt' => 'universal access (alt)',
-        ],
-    ];
+        ),
+    );
     ?>
 
 <select name="divi_projects_cpt_rename_settings[menu_icon]" id="menu-icon-select">
@@ -745,6 +748,7 @@ function divi_projects_cpt_rename_options_page() {
 }
 
 // Get settings values
+// Ternary operator format: (if statement is true) ? (do this) : (else, do this);
 function divi_projects_cpt_rename_get_singular_name() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['singular_name'] ) ? $options['singular_name'] : 'Project';
