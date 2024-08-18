@@ -28,15 +28,15 @@ function divi_projects_cpt_rename_check_divi_theme_on_activation() {
 register_activation_hook( __FILE__, 'divi_projects_cpt_rename_check_divi_theme_on_activation' );
 
 // Enqueue CSS
-add_action('admin_enqueue_scripts', 'divi_projects_cpt_rename_enqueue_custom_admin_assets');
+add_action( 'admin_enqueue_scripts', 'divi_projects_cpt_rename_enqueue_custom_admin_assets' );
 function divi_projects_cpt_rename_enqueue_custom_admin_assets() {
-    wp_enqueue_style('dashicons');
-    wp_enqueue_script('custom-admin-js', plugins_url('/custom-admin.js', __FILE__), ['jquery'], null, true);
-    wp_enqueue_style('custom-admin-css', plugins_url('/custom-admin.css', __FILE__));
+    wp_enqueue_style( 'dashicons' );
+    wp_enqueue_script( 'custom-admin-js', plugins_url( '/custom-admin.js', __FILE__ ), ['jquery'], null, true );
+    wp_enqueue_style( 'custom-admin-css', plugins_url( '/custom-admin.css', __FILE__ ) );
 }
 
 // Create the admin menu item as a submenu item of Settings
-add_action('admin_menu', 'divi_projects_cpt_rename_add_admin_menu');
+add_action( 'admin_menu', 'divi_projects_cpt_rename_add_admin_menu' );
 function divi_projects_cpt_rename_add_admin_menu() {
     add_options_page(
         'Divi - Rename Projects CPT Settings',   // $page_title (string)
@@ -49,39 +49,39 @@ function divi_projects_cpt_rename_add_admin_menu() {
 }
 
 // Add settings link to Plugins page
-add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'divi_projects_cpt_rename_action_links');
-function divi_projects_cpt_rename_action_links($links) {
-    $settings_link = '<a href="admin.php?page=divi_projects_cpt_rename">' . __('Settings') . '</a>';
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'divi_projects_cpt_rename_action_links' );
+function divi_projects_cpt_rename_action_links( $links ) {
+    $settings_link = '<a href="admin.php?page=divi_projects_cpt_rename">' . __( 'Settings' ) . '</a>';
     // Prepend the settings link to the existing links array
-    array_unshift($links, $settings_link);
+    array_unshift( $links, $settings_link );
     return $links;
 }
 
 // Register the settings
-add_action('admin_init', 'divi_projects_cpt_rename_settings_init');
+add_action( 'admin_init', 'divi_projects_cpt_rename_settings_init' );
 
 function divi_projects_cpt_rename_settings_init() {
 
     // When registering the settings check the user capability.
-    // This ensures that only authorized users can register or modify 
+    // This ensures that only authorized users can register or modify
     // the plugin settings.
     if ( ! current_user_can( 'manage_options' ) ) {
         return;
     }
 
-    register_setting('divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings', 'divi_projects_cpt_rename_sanitize_settings');
+    register_setting( 'divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings', 'divi_projects_cpt_rename_sanitize_settings' );
 
     // Custom Post Type Settings Section
     add_settings_section(
         'divi_projects_cpt_rename_cpt_settings_section',
-        __('Custom Post Type Settings', 'divi_projects_cpt_rename'),
+        __( 'Custom Post Type Settings', 'divi_projects_cpt_rename' ),
         null,
         'divi_projects_cpt_rename'
     );
 
     add_settings_field(
         'divi_projects_cpt_rename_singular_name',
-        __('Singular Name', 'divi_projects_cpt_rename'),
+        __( 'Singular Name', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_singular_name_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_cpt_settings_section'
@@ -89,7 +89,7 @@ function divi_projects_cpt_rename_settings_init() {
 
     add_settings_field(
         'divi_projects_cpt_rename_plural_name',
-        __('Plural Name', 'divi_projects_cpt_rename'),
+        __( 'Plural Name', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_plural_name_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_cpt_settings_section'
@@ -97,7 +97,7 @@ function divi_projects_cpt_rename_settings_init() {
 
     add_settings_field(
         'divi_projects_cpt_rename_slug',
-        __('Slug', 'divi_projects_cpt_rename'),
+        __( 'Slug', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_slug_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_cpt_settings_section'
@@ -105,7 +105,7 @@ function divi_projects_cpt_rename_settings_init() {
 
     add_settings_field(
         'divi_projects_cpt_rename_menu_icon',
-        __('Menu Icon', 'divi_projects_cpt_rename'),
+        __( 'Menu Icon', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_menu_icon_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_cpt_settings_section'
@@ -114,14 +114,14 @@ function divi_projects_cpt_rename_settings_init() {
     // Category Section
     add_settings_section(
         'divi_projects_cpt_rename_category_settings_section',
-        __('Category Settings', 'divi_projects_cpt_rename'),
+        __( 'Category Settings', 'divi_projects_cpt_rename' ),
         null,
         'divi_projects_cpt_rename'
     );
 
     add_settings_field(
         'divi_projects_cpt_rename_category_singular_name',
-        __('Category Singular Name', 'divi_projects_cpt_rename'),
+        __( 'Category Singular Name', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_category_singular_name_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_category_settings_section'
@@ -129,7 +129,7 @@ function divi_projects_cpt_rename_settings_init() {
 
     add_settings_field(
         'divi_projects_cpt_rename_category_plural_name',
-        __('Category Plural Name', 'divi_projects_cpt_rename'),
+        __( 'Category Plural Name', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_category_plural_name_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_category_settings_section'
@@ -137,7 +137,7 @@ function divi_projects_cpt_rename_settings_init() {
 
     add_settings_field(
         'divi_projects_cpt_rename_category_slug',
-        __('Category Slug', 'divi_projects_cpt_rename'),
+        __( 'Category Slug', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_category_slug_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_category_settings_section'
@@ -146,14 +146,14 @@ function divi_projects_cpt_rename_settings_init() {
     // Tag Section
     add_settings_section(
         'divi_projects_cpt_rename_tag_settings_section',
-        __('Tag Settings', 'divi_projects_cpt_rename'),
+        __( 'Tag Settings', 'divi_projects_cpt_rename' ),
         null,
         'divi_projects_cpt_rename'
     );
 
     add_settings_field(
         'divi_projects_cpt_rename_tag_singular_name',
-        __('Tag Singular Name', 'divi_projects_cpt_rename'),
+        __( 'Tag Singular Name', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_tag_singular_name_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_tag_settings_section'
@@ -161,7 +161,7 @@ function divi_projects_cpt_rename_settings_init() {
 
     add_settings_field(
         'divi_projects_cpt_rename_tag_plural_name',
-        __('Tag Plural Name', 'divi_projects_cpt_rename'),
+        __( 'Tag Plural Name', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_tag_plural_name_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_tag_settings_section'
@@ -169,14 +169,14 @@ function divi_projects_cpt_rename_settings_init() {
 
     add_settings_field(
         'divi_projects_cpt_rename_tag_slug',
-        __('Tag Slug', 'divi_projects_cpt_rename'),
+        __( 'Tag Slug', 'divi_projects_cpt_rename' ),
         'divi_projects_cpt_rename_tag_slug_render',
         'divi_projects_cpt_rename',
         'divi_projects_cpt_rename_tag_settings_section'
     );
 
     // Hook into the settings update process
-    add_action('update_option_divi_projects_cpt_rename_settings', 'divi_projects_cpt_rename_flush_permalinks_after_settings_update', 10, 2);
+    add_action( 'update_option_divi_projects_cpt_rename_settings', 'divi_projects_cpt_rename_flush_permalinks_after_settings_update', 10, 2 );
 
     // Function to flush permalinks
     function divi_projects_cpt_rename_flush_permalinks_after_settings_update($old_value, $new_value) {
@@ -189,13 +189,13 @@ function divi_projects_cpt_rename_settings_init() {
     // Initialize the plugin settings
     function divi_projects_cpt_rename_init() {
         // Register the settings
-        register_setting('divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings');
+        register_setting( 'divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings' );
     }
-    add_action('admin_init', 'divi_projects_cpt_rename_init');
+    add_action( 'admin_init', 'divi_projects_cpt_rename_init' );
 }
 
 // Sanitize settings
-function divi_projects_cpt_rename_sanitize_settings($settings) {
+function divi_projects_cpt_rename_sanitize_settings( $settings ) {
 
     // Check if the user has the capability
     if ( ! current_user_can( 'manage_options' ) ) {
@@ -203,37 +203,37 @@ function divi_projects_cpt_rename_sanitize_settings($settings) {
     }
 
     // Verify nonce (number used once) first
-    if ( !isset($_POST['divi_projects_cpt_rename_options_nonce']) || !wp_verify_nonce($_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify') ) {
+    if ( !isset( $_POST['divi_projects_cpt_rename_options_nonce'] ) || !wp_verify_nonce( $_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify' ) ) {
         // Handle nonce verification failure (optional)
-        wp_die('Nonce verification failed.');
+        wp_die( 'Nonce verification failed.' );
     }
 
     // Sanitize each setting field
     $sanitized_settings = array();
 
-    foreach ($settings as $key => $value) {
-        switch ($key) {
+    foreach ( $settings as $key => $value ) {
+        switch ( $key ) {
             case 'singular_name':
             case 'plural_name':
             case 'category_singular_name':
             case 'category_plural_name':
             case 'tag_singular_name':
             case 'tag_plural_name':
-                $sanitized_settings[$key] = sanitize_text_field($value);
+                $sanitized_settings[$key] = sanitize_text_field( $value );
                 break;
             case 'slug':
             case 'category_slug':
             case 'tag_slug':
                 // Sanitize the slugs to ensure they are lowercase and use dashes
-                $sanitized_settings[$key] = sanitize_title_with_dashes($value);
+                $sanitized_settings[$key] = sanitize_title_with_dashes( $value );
                 break;
             case 'menu_icon':
                 // Additional validation if needed
-                $sanitized_settings[$key] = esc_attr($value);
+                $sanitized_settings[$key] = esc_attr( $value );
                 break;
             default:
                 // Handle other settings as needed
-                $sanitized_settings[$key] = wp_kses_post($value);
+                $sanitized_settings[$key] = wp_kses_post( $value );
                 break;
         }
     }
@@ -242,38 +242,38 @@ function divi_projects_cpt_rename_sanitize_settings($settings) {
 
 // Singular Name
 function divi_projects_cpt_rename_singular_name_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[singular_name]" value="<?php echo isset($options['singular_name']) ? esc_attr($options['singular_name']) : 'Project'; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[singular_name]" value="<?php echo isset( $options['singular_name'] ) ? esc_attr( $options['singular_name'] ) : 'Project'; ?>">
     <p class="description">e.g. <kbd>Project</kbd></p>
     <?php
 }
 
 // Plural Name
 function divi_projects_cpt_rename_plural_name_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[plural_name]" value="<?php echo isset($options['plural_name']) ? esc_attr($options['plural_name']) : 'Projects'; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[plural_name]" value="<?php echo isset( $options['plural_name'] ) ? esc_attr( $options['plural_name'] ) : 'Projects'; ?>">
     <p class="description">e.g. <kbd>Projects</kbd></p>
     <?php
 }
 
 // Slug
 function divi_projects_cpt_rename_slug_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    $slug = isset($options['slug']) ? $options['slug'] : 'project';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    $slug = isset( $options['slug'] ) ? $options['slug'] : 'project';
 
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[slug]" value="<?php echo esc_attr($slug); ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[slug]" value="<?php echo esc_attr( $slug ); ?>">
     <p class="description">e.g. <kbd>project</kbd></p>
     <?php
 }
 
 // Menu Icon
 function divi_projects_cpt_rename_menu_icon_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    $selected_icon = isset($options['menu_icon']) ? esc_attr($options['menu_icon']) : 'dashicons-portfolio';
-    
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    $selected_icon = isset( $options['menu_icon'] ) ? esc_attr( $options['menu_icon'] ) : 'dashicons-portfolio';
+
     // Whitelisted menu icon values
     $menu_icons = [
         'Admin Menu' => [
@@ -285,7 +285,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-filter'                      => 'filter',
             'dashicons-admin-generic'               => 'generic',
             'dashicons-admin-home'                  => 'home',
-            'dashicons-admin-links'                  => 'links',
+            'dashicons-admin-links'                 => 'links',
             'dashicons-admin-media'                 => 'media',
             'dashicons-menu'                        => 'menu',
             'dashicons-menu-alt'                    => 'menu (alt)',
@@ -320,7 +320,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-embed-audio'      => 'embed audio',
             'dashicons-embed-generic'    => 'embed generic',
             'dashicons-embed-photo'      => 'embed photo',
-            'dashicons-embed-post'      => 'embed post',
+            'dashicons-embed-post'       => 'embed post',
             'dashicons-embed-video'      => 'embed video',
             'dashicons-exit'             => 'exit',
             'dashicons-heading'          => 'heading',
@@ -468,7 +468,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-tickets-alt'         => 'tickets (alt)',
             'dashicons-upload'              => 'upload',
             'dashicons-vault'               => 'vault',
-        ],        
+        ],
         'Notifications' => [
             'dashicons-bell'        => 'bell',
             'dashicons-yes'         => 'yes',
@@ -486,7 +486,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-star-empty'  => 'star empty',
             'dashicons-flag'        => 'flag',
             'dashicons-warning'     => 'warning',
-        ],        
+        ],
         'Post Formats' => [
             'dashicons-format-aside'   => 'aside',
             'dashicons-format-audio'   => 'audio',
@@ -503,7 +503,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-video-alt'      => 'video (alt)',
             'dashicons-video-alt2'     => 'video (alt 2)',
             'dashicons-video-alt3'     => 'video (alt 3)'
-        ],    
+        ],
         'Posts Screen' => [
             'dashicons-align-center' => 'align center',
             'dashicons-align-left'   => 'align left',
@@ -532,7 +532,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-update-alt'    => 'update (alt)',
             'dashicons-wordpress'     => 'wordpress',
             'dashicons-wordpress-alt' => 'wordpress (alt)',
-        ],                
+        ],
         'Sorting' => [
             'dashicons-arrow-down'       => 'arrow down',
             'dashicons-arrow-down-alt'   => 'arrow down (alt)',
@@ -584,7 +584,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
         'Taxonomies' => [
             'dashicons-tag'      => 'tag',
             'dashicons-category' => 'category',
-        ],           
+        ],
         'TinyMCE' => [
             'dashicons-editor-aligncenter'      => 'align center',
             'dashicons-editor-alignleft'        => 'align left',
@@ -619,7 +619,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-editor-underline'        => 'underline',
             'dashicons-editor-unlink'           => 'unlink',
             'dashicons-editor-video'            => 'video',
-        ],     
+        ],
         'Welcome Screen' => [
             'dashicons-welcome-add-page'      => 'add page',
             'dashicons-welcome-comments'      => 'comments',
@@ -632,7 +632,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
             'dashicons-archive'  => 'archive',
             'dashicons-tagcloud' => 'tag cloud',
             'dashicons-text'     => 'text',
-        ],        
+        ],
         'WordPress.org' => [
             'dashicons-art'                  => 'art',
             'dashicons-clipboard'            => 'clipboard',
@@ -654,11 +654,11 @@ function divi_projects_cpt_rename_menu_icon_render() {
     ?>
 
 <select name="divi_projects_cpt_rename_settings[menu_icon]" id="menu-icon-select">
-    <?php foreach ($menu_icons as $group => $icons) : ?>
-        <optgroup label="<?php echo esc_attr($group); ?>">
-            <?php foreach ($icons as $icon => $label) : ?>
-                <option value="<?php echo esc_attr($icon); ?>" <?php selected($selected_icon, $icon); ?>>
-                    <?php echo esc_html($label); ?>
+    <?php foreach ( $menu_icons as $group => $icons ) : ?>
+        <optgroup label="<?php echo esc_attr( $group ); ?>">
+            <?php foreach ( $icons as $icon => $label ) : ?>
+                <option value="<?php echo esc_attr( $icon ); ?>" <?php selected( $selected_icon, $icon ); ?>>
+                    <?php echo esc_html( $label ); ?>
                 </option>
             <?php endforeach; ?>
         </optgroup>
@@ -670,54 +670,54 @@ function divi_projects_cpt_rename_menu_icon_render() {
 
 // Category Singular Name
 function divi_projects_cpt_rename_category_singular_name_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[category_singular_name]" value="<?php echo isset($options['category_singular_name']) ? esc_attr($options['category_singular_name']) : 'Project Category'; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[category_singular_name]" value="<?php echo isset( $options['category_singular_name'] ) ? esc_attr( $options['category_singular_name'] ) : 'Project Category'; ?>">
     <p class="description">e.g. <kbd>Project Category</kbd> or <kbd>Category</kbd></p>
     <?php
 }
 
 // Category Plural Name
 function divi_projects_cpt_rename_category_plural_name_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[category_plural_name]" value="<?php echo isset($options['category_plural_name']) ? esc_attr($options['category_plural_name']) : 'Project Categories'; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[category_plural_name]" value="<?php echo isset( $options['category_plural_name'] ) ? esc_attr( $options['category_plural_name'] ) : 'Project Categories'; ?>">
     <p class="description">e.g. <kbd>Project Categories</kbd> or <kbd>Categories</kbd></p>
     <?php
 }
 
 // Category Slug
 function divi_projects_cpt_rename_category_slug_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[category_slug]" value="<?php echo isset($options['category_slug']) ? esc_attr($options['category_slug']) : 'project_category'; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[category_slug]" value="<?php echo isset( $options['category_slug'] ) ? esc_attr( $options['category_slug'] ) : 'project_category'; ?>">
     <p class="description">e.g. <code>project-category</code><br />Divi's default category slug is <kbd>project_category</kbd> with an underscore.</p>
     <?php
 }
 
 // Tag Singular Name
 function divi_projects_cpt_rename_tag_singular_name_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[tag_singular_name]" value="<?php echo isset($options['tag_singular_name']) ? esc_attr($options['tag_singular_name']) : 'Project Tag'; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[tag_singular_name]" value="<?php echo isset( $options['tag_singular_name'] ) ? esc_attr( $options['tag_singular_name'] ) : 'Project Tag'; ?>">
     <p class="description">e.g. <kbd>Project Tag</kbd> or <kbd>Tag</kbd></p>
     <?php
 }
 
 // Tag Plural Name
 function divi_projects_cpt_rename_tag_plural_name_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[tag_plural_name]" value="<?php echo isset($options['tag_plural_name']) ? esc_attr($options['tag_plural_name']) : 'Project Tags'; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[tag_plural_name]" value="<?php echo isset( $options['tag_plural_name'] ) ? esc_attr( $options['tag_plural_name'] ) : 'Project Tags'; ?>">
     <p class="description">e.g. <kbd>Project Tags</kbd> or <kbd>Tags</kbd></p>
     <?php
 }
 
 // Tag Slug
 function divi_projects_cpt_rename_tag_slug_render() {
-    $options = get_option('divi_projects_cpt_rename_settings');
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
-    <input type="text" name="divi_projects_cpt_rename_settings[tag_slug]" value="<?php echo isset($options['tag_slug']) ? esc_attr($options['tag_slug']) : 'project_tag'; ?>">
+    <input type="text" name="divi_projects_cpt_rename_settings[tag_slug]" value="<?php echo isset( $options['tag_slug'] ) ? esc_attr( $options['tag_slug'] ) : 'project_tag'; ?>">
     <p class="description">e.g. <code>project-tag</code><br />Divi's default tag slug is <kbd>project_tag</kbd> with an underscore.</p>
     <?php
 }
@@ -725,78 +725,78 @@ function divi_projects_cpt_rename_tag_slug_render() {
 function divi_projects_cpt_rename_options_page() {
     if ( ! current_user_can( 'manage_options' ) ) {
         // Check user capabilities
-        // User should not be able to access this plugin admin page as it is 
+        // User should not be able to access this plugin admin page as it is
         // listed under Settings but this will double check.
         // If the user doesn't have the capability, display an error message and exit.
         wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
     }
     ?>
     <form action="options.php" method="post">
-        <h1 class="divi-purple">Rename Divi Projects post type <span class="ds45"><a href="https://digitalshed45.co.uk/">Digital Shed45</a></span></h1>            
+        <h1 class="divi-purple">Rename Divi Projects post type <span class="ds45"><a href="https://digitalshed45.co.uk/">Digital Shed45</a></span></h1>
         <?php
-        settings_fields('divi_projects_cpt_rename_settings_group');
-        do_settings_sections('divi_projects_cpt_rename');
-        wp_nonce_field('divi_projects_cpt_rename_options_verify', 'divi_projects_cpt_rename_options_nonce'); // NONCE
+        settings_fields( 'divi_projects_cpt_rename_settings_group' );
+        do_settings_sections( 'divi_projects_cpt_rename' );
+        wp_nonce_field( 'divi_projects_cpt_rename_options_verify', 'divi_projects_cpt_rename_options_nonce' );
         submit_button();
         ?>
-        <p class="description">To <strong>reset</strong> this post type to the default Project settings (1) first, deactivate the <strong>Rename Divi Projects post type</strong> plugin on the <a href="<?php echo admin_url('plugins.php'); ?>">Plugins</a> page then (2) go to <kbd>Settings &gt; Permalinks</kbd> and click the Save Changes button to flush the rewrite rules cache.</p>
+        <p class="description">To <strong>reset</strong> this post type to the default Project settings (1) first, deactivate the <strong>Rename Divi Projects post type</strong> plugin on the <a href="<?php echo admin_url( 'plugins.php' ); ?>">Plugins</a> page then (2) go to <kbd>Settings &gt; Permalinks</kbd> and click the Save Changes button to flush the rewrite rules cache.</p>
     </form>
     <?php
 }
 
 // Get settings values
 function divi_projects_cpt_rename_get_singular_name() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['singular_name']) ? $options['singular_name'] : 'Project';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['singular_name'] ) ? $options['singular_name'] : 'Project';
 }
 
 function divi_projects_cpt_rename_get_plural_name() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['plural_name']) ? $options['plural_name'] : 'Projects';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['plural_name'] ) ? $options['plural_name'] : 'Projects';
 }
 
 function divi_projects_cpt_rename_get_slug() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['slug']) ? $options['slug'] : 'project';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['slug'] ) ? $options['slug'] : 'project';
 }
 
 function divi_projects_cpt_rename_get_menu_icon() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['menu_icon']) ? $options['menu_icon'] : 'dashicons-portfolio';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['menu_icon'] ) ? $options['menu_icon'] : 'dashicons-portfolio';
 }
 
 function divi_projects_cpt_rename_get_category_singular_name() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['category_singular_name']) ? $options['category_singular_name'] : 'Project Category';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['category_singular_name'] ) ? $options['category_singular_name'] : 'Project Category';
 }
 
 function divi_projects_cpt_rename_get_category_plural_name() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['category_plural_name']) ? $options['category_plural_name'] : 'Project Categories';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['category_plural_name'] ) ? $options['category_plural_name'] : 'Project Categories';
 }
 
 function divi_projects_cpt_rename_get_category_slug() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['category_slug']) ? $options['category_slug'] : 'project_category';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['category_slug'] ) ? $options['category_slug'] : 'project_category';
 }
 
 function divi_projects_cpt_rename_get_tag_singular_name() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['tag_singular_name']) ? $options['tag_singular_name'] : 'Project Tag';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['tag_singular_name'] ) ? $options['tag_singular_name'] : 'Project Tag';
 }
 
 function divi_projects_cpt_rename_get_tag_plural_name() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['tag_plural_name']) ? $options['tag_plural_name'] : 'Project Tags';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['tag_plural_name'] ) ? $options['tag_plural_name'] : 'Project Tags';
 }
 
 function divi_projects_cpt_rename_get_tag_slug() {
-    $options = get_option('divi_projects_cpt_rename_settings');
-    return isset($options['tag_slug']) ? $options['tag_slug'] : 'project_tag';
+    $options = get_option( 'divi_projects_cpt_rename_settings' );
+    return isset( $options['tag_slug'] ) ? $options['tag_slug'] : 'project_tag';
 }
 
 // Change the Divi Projects custom post type
-add_action('init', 'divi_projects_cpt_rename_register_new_values');
+add_action( 'init', 'divi_projects_cpt_rename_register_new_values' );
 function divi_projects_cpt_rename_register_new_values() {
     $singular_name          = divi_projects_cpt_rename_get_singular_name();
     $plural_name            = divi_projects_cpt_rename_get_plural_name();
@@ -809,7 +809,7 @@ function divi_projects_cpt_rename_register_new_values() {
     $tag_plural_name        = divi_projects_cpt_rename_get_tag_plural_name();
     $tag_slug               = divi_projects_cpt_rename_get_tag_slug();
 
-    register_post_type('project', [
+    register_post_type( 'project', [
         'labels'            => [
             'name'          => $plural_name,
             'singular_name' => $singular_name,
@@ -830,59 +830,59 @@ function divi_projects_cpt_rename_register_new_values() {
         'rewrite'           => [
         'slug'              => $slug,
         ],
+    ] );
+
+    register_taxonomy( 'project_category', array( 'project' ), [
+        'hierarchical' => true,
+        'labels'                => [
+            'name'              => $category_plural_name,
+            'singular_name'     => $category_singular_name,
+            'search_items'      => sprintf( 'Search %s', $category_plural_name ),
+            'all_items'         => sprintf( 'All %s', $category_plural_name ),
+            'parent_item'       => sprintf( 'Parent %s', $category_singular_name ),
+            'parent_item_colon' => sprintf( 'Parent %s:', $category_singular_name ),
+            'edit_item'         => sprintf( 'Edit %s', $category_singular_name ),
+            'update_item'       => sprintf( 'Update %s', $category_singular_name ),
+            'add_new_item'      => sprintf( 'Add New %s', $category_singular_name ),
+            'new_item_name'     => sprintf( 'New %s Name', $category_singular_name ),
+            'menu_name'         => $category_plural_name,
+            'not_found'         => sprintf( 'You currently don\'t have any %s.', $category_plural_name ),
+        ],
+        'show_ui'               => true,
+        'show_admin_column'     => true,
+        'query_var'             => true,
+        'show_in_rest'          => true,
+        'rewrite'               => [
+            'slug'              => $category_slug,
+            'with_front'        => true,
+        ],
     ]);
 
-    register_taxonomy('project_category', array('project'), [
+    register_taxonomy( 'project_tag', array('project'), [
         'hierarchical' => true,
-        'labels'            => [
-            'name'          => $category_plural_name,
-            'singular_name' => $category_singular_name,
-            'search_items'  => sprintf('Search %s', $category_plural_name),
-            'all_items'     => sprintf('All %s', $category_plural_name),
-            'parent_item'   => sprintf('Parent %s', $category_singular_name),
-            'parent_item_colon' => sprintf('Parent %s:', $category_singular_name),
-            'edit_item'     => sprintf('Edit %s', $category_singular_name),
-            'update_item'   => sprintf('Update %s', $category_singular_name),
-            'add_new_item'  => sprintf('Add New %s', $category_singular_name),
-            'new_item_name' => sprintf('New %s Name', $category_singular_name),
-            'menu_name'     => $category_plural_name,
-            'not_found'     => sprintf('You currently don\'t have any %s.', $category_plural_name),
+        'labels'                => [
+            'name'              => $tag_plural_name,
+            'singular_name'     => $tag_singular_name,
+            'search_items'      => sprintf( 'Search %s', $tag_plural_name ),
+            'all_items'         => sprintf( 'All %s', $tag_plural_name ),
+            'parent_item'       => sprintf( 'Parent %s', $tag_singular_name ),
+            'parent_item_colon' => sprintf( 'Parent %s:', $tag_singular_name ),
+            'edit_item'         => sprintf( 'Edit %s', $tag_singular_name ),
+            'update_item'       => sprintf( 'Update %s', $tag_singular_name ),
+            'add_new_item'      => sprintf( 'Add New %s', $tag_singular_name ),
+            'new_item_name'     => sprintf( 'New %s Name', $tag_singular_name ),
+            'menu_name'         => $tag_plural_name,
+            'not_found'         => sprintf( 'You currently don\'t have any %s.', $tag_plural_name ),
         ],
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'show_in_rest'      => true,
-        'rewrite'           => [
-            'slug'          => $category_slug,
-            'with_front'    => true,
+        'show_ui'               => true,
+        'show_admin_column'     => true,
+        'query_var'             => true,
+        'show_in_rest'          => true,
+        'rewrite'               => [
+            'slug'              => $tag_slug,
+            'with_front'        => true,
         ],
-    ]);
-
-    register_taxonomy('project_tag', array('project'), [
-        'hierarchical' => true,
-        'labels'            => [
-            'name'          => $tag_plural_name,
-            'singular_name' => $tag_singular_name,
-            'search_items'  => sprintf('Search %s', $tag_plural_name),
-            'all_items'     => sprintf('All %s', $tag_plural_name),
-            'parent_item'   => sprintf('Parent %s', $tag_singular_name),
-            'parent_item_colon' => sprintf('Parent %s:', $tag_singular_name),
-            'edit_item'     => sprintf('Edit %s', $tag_singular_name),
-            'update_item'   => sprintf('Update %s', $tag_singular_name),
-            'add_new_item'  => sprintf('Add New %s', $tag_singular_name),
-            'new_item_name' => sprintf('New %s Name', $tag_singular_name),
-            'menu_name'     => $tag_plural_name,
-            'not_found'     => sprintf('You currently don\'t have any %s.', $tag_plural_name),
-        ],
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'show_in_rest'      => true,
-        'rewrite'           => [
-            'slug'          => $tag_slug,
-            'with_front'    => true,
-        ],
-    ]);
+    ] );
 
     // Flush WordPress rewrite (permalink) rules
     flush_rewrite_rules();
