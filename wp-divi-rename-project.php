@@ -59,7 +59,16 @@ function divi_projects_cpt_rename_action_links($links) {
 
 // Register the settings
 add_action('admin_init', 'divi_projects_cpt_rename_settings_init');
+
 function divi_projects_cpt_rename_settings_init() {
+
+    // When registering the settings check the user capability.
+    // This ensures that only authorized users can register or modify 
+    // the plugin settings.
+    if ( ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+
     register_setting('divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings', 'divi_projects_cpt_rename_sanitize_settings');
 
     // Custom Post Type Settings Section
@@ -188,8 +197,13 @@ function divi_projects_cpt_rename_settings_init() {
 // Sanitize settings
 function divi_projects_cpt_rename_sanitize_settings($settings) {
 
-    // Verify nonce
-    if (!isset($_POST['divi_projects_cpt_rename_options_nonce']) || !wp_verify_nonce($_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify')) {
+    // Check if the user has the capability
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_die( __( 'You do not have sufficient permissions to perform this action.' ) );
+    }
+
+    // Verify nonce (number used once) first
+    if ( !isset($_POST['divi_projects_cpt_rename_options_nonce']) || !wp_verify_nonce($_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify') ) {
         // Handle nonce verification failure (optional)
         wp_die('Nonce verification failed.');
     }
@@ -708,6 +722,13 @@ function divi_projects_cpt_rename_tag_slug_render() {
 }
 
 function divi_projects_cpt_rename_options_page() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        // Check user capabilities
+        // User should not be able to access this plugin admin page as it is 
+        // listed under Settings but this will double check.
+        // If the user doesn't have the capability, display an error message and exit.
+        wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+    }
     ?>
     <form action="options.php" method="post">
         <h1 class="divi-purple">Rename Divi Projects post type <span class="ds45"><a href="https://digitalshed45.co.uk/">Digital Shed45</a></span></h1>            
