@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name:         Rename Divi Projects post type
- * Version:             2.2.0-alpha
+ * Version:             2.3.0-beta
  * Plugin URI:          https://github.com/garethjmsaunders/wp-divi-customise-project
  * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
  * Author:              Digital Shed45 - Gareth J M Saunders
@@ -35,6 +35,7 @@ function divi_projects_cpt_rename_enqueue_custom_admin_assets() {
     wp_enqueue_script( 'custom-admin-js', plugins_url( '/custom-admin.js', __FILE__ ), ['jquery'], null, true );
     wp_enqueue_style( 'custom-admin-css', plugins_url( '/custom-admin.css', __FILE__ ) );
 }
+
 
 // Create the admin menu item as a submenu item of Settings
 add_action( 'admin_menu', 'divi_projects_cpt_rename_add_admin_menu' );
