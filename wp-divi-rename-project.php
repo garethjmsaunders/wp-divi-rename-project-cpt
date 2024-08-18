@@ -737,14 +737,15 @@ function divi_projects_cpt_rename_options_page() {
     }
     ?>
     <form action="options.php" method="post">
-        <h1 class="divi-purple">Rename Divi Projects post type <span class="ds45"><a href="https://digitalshed45.co.uk/">Digital Shed45</a></span></h1>
+        <h1 class="divi-purple">Rename Divi Projects post type v<?php $plugin_data = get_plugin_data(__FILE__); $plugin_version = $plugin_data['Version']; echo esc_html($plugin_version); ?><span class="ds45"><a href="https://digitalshed45.co.uk/">Digital Shed45</a></span></h1>
         <?php
-        settings_fields( 'divi_projects_cpt_rename_settings_group' );
-        do_settings_sections( 'divi_projects_cpt_rename' );
-        wp_nonce_field( 'divi_projects_cpt_rename_options_verify', 'divi_projects_cpt_rename_options_nonce' );
-        submit_button();
+            settings_fields( 'divi_projects_cpt_rename_settings_group' );
+            do_settings_sections( 'divi_projects_cpt_rename' );
+            wp_nonce_field( 'divi_projects_cpt_rename_options_verify', 'divi_projects_cpt_rename_options_nonce' );
+            submit_button();
         ?>
-        <p class="description">To <strong>reset</strong> this post type to the default Project settings (1) first, deactivate the <strong>Rename Divi Projects post type</strong> plugin on the <a href="<?php echo admin_url( 'plugins.php' ); ?>">Plugins</a> page then (2) go to <kbd>Settings &gt; Permalinks</kbd> and click the Save Changes button to flush the rewrite rules cache.</p>
+        <h2>Reset to defaults</h2>
+        <p class="reset">To <strong>reset</strong> this custom post type to the default Divi Project settings (1) go to the <a href="<?php echo admin_url( 'plugins.php' ); ?>">Plugins</a> page and deactivate the <strong>Rename Divi Projects post type</strong> plugin then (2) go to <a href="options-permalink.php" target="_blank">Settings &gt; Permalinks</a> and click the Save Changes button to flush the rewrite rules cache.</p>
     </form>
     <?php
 }
