@@ -664,7 +664,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
         </optgroup>
     <?php endforeach; ?>
 </select>
-    <p class="description">See <a href="https://developer.wordpress.org/resource/dashicons/#layout" target="_blank">Dashicons</a> (opens new window)<br>Divi's default menu icon is <kbd>Admin Menu &gt; Post</kbd>.</p>
+    <p class="description">See <a href="https://developer.wordpress.org/resource/dashicons/#layout" target="_blank">Dashicons</a> (opens new window)<br />Divi's default menu icon is <kbd>Admin Menu &gt; Post</kbd>.</p>
     <?php
     }
 
@@ -691,7 +691,7 @@ function divi_projects_cpt_rename_category_slug_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[category_slug]" value="<?php echo isset($options['category_slug']) ? esc_attr($options['category_slug']) : 'project_category'; ?>">
-    <p class="description">e.g. <code>project-category</code><br>Divi's default category slug is <kbd>project_category</kbd> with an underscore.</p>
+    <p class="description">e.g. <code>project-category</code><br />Divi's default category slug is <kbd>project_category</kbd> with an underscore.</p>
     <?php
 }
 
@@ -718,7 +718,7 @@ function divi_projects_cpt_rename_tag_slug_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[tag_slug]" value="<?php echo isset($options['tag_slug']) ? esc_attr($options['tag_slug']) : 'project_tag'; ?>">
-    <p class="description">e.g. <code>project-tag</code><br>Divi's default tag slug is <kbd>project_tag</kbd> with an underscore.</p>
+    <p class="description">e.g. <code>project-tag</code><br />Divi's default tag slug is <kbd>project_tag</kbd> with an underscore.</p>
     <?php
 }
 
