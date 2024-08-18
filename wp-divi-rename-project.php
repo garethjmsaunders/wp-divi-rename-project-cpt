@@ -6,6 +6,7 @@
  * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
  * Author:              Digital Shed45 - Gareth J M Saunders
  * Author URI:          https://digitalshed45.co.uk
+ * Text domain:         divi-projects-cpt-rename
  * Requires at least:   5.3
  * Tested up to:        6.6.1
  * License:             GPL3
