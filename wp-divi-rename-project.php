@@ -13,7 +13,7 @@
  */
 
 // Exit if plugin accessed directly
-if (!defined('ABSPATH')) {
+if ( !defined('ABSPATH') ) {
     exit;
 }
 
@@ -181,7 +181,7 @@ function divi_projects_cpt_rename_settings_init() {
     // Function to flush permalinks
     function divi_projects_cpt_rename_flush_permalinks_after_settings_update($old_value, $new_value) {
         // Check if the values have changed to avoid unnecessary flushes
-        if ($old_value !== $new_value) {
+        if ( $old_value !== $new_value ) {
             flush_rewrite_rules();
         }
     }
@@ -274,6 +274,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
     $options = get_option('divi_projects_cpt_rename_settings');
     $selected_icon = isset($options['menu_icon']) ? esc_attr($options['menu_icon']) : 'dashicons-portfolio';
     
+    // Whitelisted menu icon values
     $menu_icons = [
         'Admin Menu' => [
             'dashicons-admin-appearance'            => 'appearance',
