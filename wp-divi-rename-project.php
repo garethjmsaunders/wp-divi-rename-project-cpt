@@ -28,6 +28,12 @@ function divi_projects_cpt_rename_check_divi_theme_on_activation() {
 }
 register_activation_hook( __FILE__, 'divi_projects_cpt_rename_check_divi_theme_on_activation' );
 
+// Load the Text Domain
+function my_plugin_load_textdomain() {
+    load_plugin_textdomain( 'my-plugin', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+add_action( 'init', 'my_plugin_load_textdomain' );
+
 // Enqueue CSS
 add_action( 'admin_enqueue_scripts', 'divi_projects_cpt_rename_enqueue_custom_admin_assets' );
 function divi_projects_cpt_rename_enqueue_custom_admin_assets() {
