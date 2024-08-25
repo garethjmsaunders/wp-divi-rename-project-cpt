@@ -810,9 +810,11 @@ function divi_projects_cpt_rename_options_page() {
     }
     ?>
     <form action="options.php" method="post">
-        <h1 class="divi-purple">Rename Divi Projects post type v<?php $plugin_data = get_plugin_data(__FILE__); $plugin_version = $plugin_data['Version']; echo esc_html($plugin_version); ?><span class="ds45"><a href="https://digitalshed45.co.uk/">Digital Shed45</a></span></h1>
 
-        <?php // settings_errors(); // Display validation errors ?>
+    <header class="divi-purple">
+        <h1>Rename Divi Projects | <span class="plugin-version"> v<?php $plugin_data = get_plugin_data(__FILE__); $plugin_version = $plugin_data['Version']; echo esc_html($plugin_version); ?></span></h1>
+        <p class="ds45">by <a href="https://digitalshed45.co.uk/">Digital Shed45</a></p>
+    </header>
 
         <?php
             settings_fields( 'divi_projects_cpt_rename_settings_group' );

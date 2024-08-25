@@ -4,24 +4,36 @@
   */
 
 /* Heading banner */
-h1.divi-purple {
-    margin: 0.7em 0.7em 0 0;
-    padding: 1em;
+.divi-purple {
     background-color: rgb(108,46,185);
-    background: linear-gradient(90deg, rgba(108,46,185,1) 45%, rgba(246,205,4,1) 81%);
+    background: linear-gradient(90deg, rgba(108,46,185,1) 45%, rgba(246,205,4,1) 95%);
+    padding: 1em;
+    margin: 1em 1em 1em 0;
+}
+
+.divi-purple h1 {
+    margin: 0.7em 0.7em 0.7em 0;
     color: white;
     font-size: 23px;
 }
 
+.plugin-version {
+    font-size: 16px;
+}
+
 .ds45 {
     float: right;
+    font-size: 1.2em;
+    font-style: italic;
 }
 .ds45 a {
-    color: #353740;
+    color: #000;
     text-decoration: none;
+    font-style: normal;
+    font-weight: 600;
 }
 .ds45 a:hover {
-    color: #000;
+    color: #6c2eb9;
     text-decoration: underline;
 }
 
