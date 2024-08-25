@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name:         Rename Divi Projects post type
- * Version:             1.0.0
+ * Version:             1.1.0
  * Plugin URI:          https://github.com/garethjmsaunders/wp-divi-customise-project
  * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
  * Author:              Digital Shed45 - Gareth J M Saunders
@@ -196,28 +196,97 @@ function divi_projects_cpt_rename_settings_init() {
     add_action( 'admin_init', 'divi_projects_cpt_rename_init' );
 }
 
-// Sanitize settings
+
+/**
+ * Converts a field key into a human-friendly label.
+ * Required by Sanitize settings function.
+ *
+ * @param string $field_key The field key to be transformed.
+ * @return string The transformed, human-friendly field name.
+ */
+function divi_projects_cpt_rename_humanize_field_name( $field_key ) {
+    // Replace underscores with spaces
+    $human_readable = str_replace( '_', ' ', $field_key );
+    
+    // Capitalize each word
+    $human_readable = ucwords( $human_readable );
+    
+    return $human_readable;
+}
+
+/**
+ * Sanitize settings for the Divi Projects CPT Rename plugin.
+ *
+ * This function checks user capabilities, verifies the nonce for security, ensures that required fields are not empty,
+ * and sanitizes the provided settings values before saving them.
+ *
+ * @param array $settings The array of settings fields to be sanitized.
+ * @return array The array of sanitized settings.
+ */
 function divi_projects_cpt_rename_sanitize_settings( $settings ) {
 
-    // Check if the user has the capability to access these settings
+    /**
+     * Check if the current user has the capability to manage options.
+     * If not, terminate the script with an error message.
+     */
     if ( ! current_user_can( 'manage_options' ) ) {
-        wp_die( __( 'You do not have sufficient permissions to perform this action.' ) );
+        wp_die( __( 'You do not have sufficient permissions to perform this action.', 'divi-projects-cpt-rename' ) );
     }
 
-    // Check whether a security token, called a "nonce" (number used once) in WordPress,
-    // is present and valid when a form is submitted. The purpose of the nonce is to ensure 
-    // that the form submission is legitimate and not a result of a  Cross-Site Request Forgery
-    // (CSRF) attack.
-    if ( !isset( $_POST['divi_projects_cpt_rename_options_nonce'] ) || !wp_verify_nonce( $_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify' ) ) {
-        // Handle nonce verification failure (optional)
-        wp_die( 'Nonce verification failed.' );
+    /**
+     * Verify the nonce to protect against Cross-Site Request Forgery (CSRF) attacks.
+     * If the nonce is invalid, terminate the script with an error message.
+     */
+    if ( ! isset( $_POST['divi_projects_cpt_rename_options_nonce'] ) || 
+         ! wp_verify_nonce( $_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify' ) ) {
+        wp_die( __( 'Nonce verification failed.', 'divi-projects-cpt-rename' ) );
     }
 
-    // Sanitize each setting field
+    // Initialize the array for sanitized settings
     $sanitized_settings = array();
 
-    // Sanitize setting values
+    /**
+     * Define the list of required fields.
+     * These fields must not be empty. If any required field is empty, an error message will be displayed.
+     */
+    $required_fields = array(
+        'singular_name',
+        'plural_name',
+        'slug',
+        'menu_icon',
+        'category_singular_name',
+        'category_plural_name',
+        'category_slug',
+        'tag_singular_name',
+        'tag_plural_name',
+        'tag_slug'
+    );
+
+    /**
+     * Loop through each setting field, check if the field is required and if it's empty.
+     * If a required field is empty, add an error message and skip sanitization for that field.
+     * Otherwise, sanitize the field value based on its type.
+     */
     foreach ( $settings as $key => $value ) {
+
+        // Check if the field is required and if it's empty
+        if ( in_array( $key, $required_fields, true ) && empty( $value ) ) {
+            add_settings_error(
+                'divi_projects_cpt_rename_settings', // Setting slug
+                $key . '_error', // Error code
+                sprintf( 
+                    /* translators: %s: field name */
+                    __( 'The %s field cannot be empty.', 'divi-projects-cpt-rename' ), 
+                    divi_projects_cpt_rename_humanize_field_name( $key )
+                ), // Error message
+                'error' // Error type
+            );
+            // Optionally, you can set a default value or retain the previous value
+            // For this example, we'll skip sanitization for empty required fields
+            continue;
+        }
+
+        // Sanitize setting values based on the field key
         switch ( $key ) {
             case 'singular_name':
             case 'plural_name':
@@ -225,27 +294,29 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
             case 'category_plural_name':
             case 'tag_singular_name':
             case 'tag_plural_name':
-                $sanitized_settings[$key] = sanitize_text_field( $value );
+                $sanitized_settings[ $key ] = sanitize_text_field( $value );
                 break;
             case 'slug':
             case 'category_slug':
             case 'tag_slug':
                 // Sanitize the slugs to ensure they are lowercase and use dashes
-                $sanitized_settings[$key] = sanitize_title_with_dashes( $value );
+                $sanitized_settings[ $key ] = sanitize_title_with_dashes( $value );
                 break;
             case 'menu_icon':
                 // Additional validation if needed
-                $sanitized_settings[$key] = esc_attr( $value );
+                $sanitized_settings[ $key ] = esc_attr( $value );
                 break;
             default:
                 // Handle other settings as needed
-                $sanitized_settings[$key] = wp_kses_post( $value );
+                $sanitized_settings[ $key ] = wp_kses_post( $value );
                 break;
         }
     }
+
+    // Return the sanitized settings
     return $sanitized_settings;
 }
-// END Sanitize settings
+
 
 // Singular Name
 function divi_projects_cpt_rename_singular_name_render() {
