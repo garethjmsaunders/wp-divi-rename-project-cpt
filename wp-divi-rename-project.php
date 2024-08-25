@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name:         Rename Divi Projects post type
- * Version:             1.0.0
+ * Version:             1.1.0
  * Plugin URI:          https://github.com/garethjmsaunders/wp-divi-customise-project
  * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
  * Author:              Digital Shed45 - Gareth J M Saunders
@@ -196,7 +196,7 @@ function divi_projects_cpt_rename_settings_init() {
     add_action( 'admin_init', 'divi_projects_cpt_rename_init' );
 }
 
-// Sanitize settings
+// Sanitize settings #HERE
 function divi_projects_cpt_rename_sanitize_settings( $settings ) {
 
     // Check if the user has the capability to access these settings
@@ -204,20 +204,42 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
         wp_die( __( 'You do not have sufficient permissions to perform this action.' ) );
     }
 
-    // Check whether a security token, called a "nonce" (number used once) in WordPress,
-    // is present and valid when a form is submitted. The purpose of the nonce is to ensure 
-    // that the form submission is legitimate and not a result of a  Cross-Site Request Forgery
-    // (CSRF) attack.
+    // Check the nonce for security
     if ( !isset( $_POST['divi_projects_cpt_rename_options_nonce'] ) || !wp_verify_nonce( $_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify' ) ) {
-        // Handle nonce verification failure (optional)
         wp_die( 'Nonce verification failed.' );
     }
 
     // Sanitize each setting field
     $sanitized_settings = array();
 
+    // Required fields
+    $required_fields = array(
+        'singular_name',
+        'plural_name',
+        'slug',
+        'menu_icon',
+        'category_singular_name',
+        'category_plural_name',
+        'category_slug',
+        'tag_singular_name',
+        'tag_plural_name',
+        'tag_slug'
+    );
+
     // Sanitize setting values
     foreach ( $settings as $key => $value ) {
+
+        // Check if the field is required and if it's empty
+        if ( in_array( $key, $required_fields ) && empty( $value ) ) {
+            add_settings_error(
+                'divi_projects_cpt_rename_settings', // Setting slug
+                $key . '_error', // Error code
+                sprintf( __( 'The %s field cannot be empty.', 'divi-projects-cpt-rename' ), $key ), // Error message
+                'error' // Error type
+            );
+            continue; // Skip sanitization if empty
+        }
+
         switch ( $key ) {
             case 'singular_name':
             case 'plural_name':
@@ -243,9 +265,13 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
                 break;
         }
     }
+
+    // Return the sanitized settings
     return $sanitized_settings;
 }
 // END Sanitize settings
+
+
 
 // Singular Name
 function divi_projects_cpt_rename_singular_name_render() {
