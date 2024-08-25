@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name:         Rename Divi Projects post type
- * Version:             2.3.0-beta
+ * Version:             1.0.0
  * Plugin URI:          https://github.com/garethjmsaunders/wp-divi-customise-project
  * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
  * Author:              Digital Shed45 - Gareth J M Saunders
@@ -199,7 +199,7 @@ function divi_projects_cpt_rename_settings_init() {
 // Sanitize settings
 function divi_projects_cpt_rename_sanitize_settings( $settings ) {
 
-    // Check if the user has the capability
+    // Check if the user has the capability to access these settings
     if ( ! current_user_can( 'manage_options' ) ) {
         wp_die( __( 'You do not have sufficient permissions to perform this action.' ) );
     }
@@ -216,6 +216,7 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
     // Sanitize each setting field
     $sanitized_settings = array();
 
+    // Sanitize setting values
     foreach ( $settings as $key => $value ) {
         switch ( $key ) {
             case 'singular_name':
@@ -244,6 +245,7 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
     }
     return $sanitized_settings;
 }
+// END Sanitize settings
 
 // Singular Name
 function divi_projects_cpt_rename_singular_name_render() {
@@ -727,6 +729,7 @@ function divi_projects_cpt_rename_tag_slug_render() {
     <?php
 }
 
+// Display settings page
 function divi_projects_cpt_rename_options_page() {
     if ( ! current_user_can( 'manage_options' ) ) {
         // Check user capabilities
@@ -738,6 +741,9 @@ function divi_projects_cpt_rename_options_page() {
     ?>
     <form action="options.php" method="post">
         <h1 class="divi-purple">Rename Divi Projects post type v<?php $plugin_data = get_plugin_data(__FILE__); $plugin_version = $plugin_data['Version']; echo esc_html($plugin_version); ?><span class="ds45"><a href="https://digitalshed45.co.uk/">Digital Shed45</a></span></h1>
+
+        <?php // settings_errors(); // Display validation errors ?>
+
         <?php
             settings_fields( 'divi_projects_cpt_rename_settings_group' );
             do_settings_sections( 'divi_projects_cpt_rename' );
