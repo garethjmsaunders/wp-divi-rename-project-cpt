@@ -23,7 +23,7 @@ function divi_projects_cpt_rename_check_divi_theme_on_activation() {
     $theme = wp_get_theme();
     if ( 'Divi' !== $theme->get( 'Name' ) && 'Divi' !== $theme->get( 'Template' ) ) {
         deactivate_plugins( plugin_basename( __FILE__ ) );
-        wp_die( __( 'This plugin requires the Divi theme from Elegant Themes to be active. Please activate the Divi theme and try again.', 'textdomain' ), 'Plugin Activation Error', array( 'back_link' => true ) );
+        wp_die( __( 'This plugin requires the Divi theme from Elegant Themes to be active. Please activate the Divi theme and try again.', 'divi-projects-cpt-rename' ), 'Plugin Activation Error', array( 'back_link' => true ) );
     }
 }
 register_activation_hook( __FILE__, 'divi_projects_cpt_rename_check_divi_theme_on_activation' );
@@ -36,13 +36,12 @@ function divi_projects_cpt_rename_enqueue_custom_admin_assets() {
     wp_enqueue_style( 'custom-admin-css', plugins_url( '/custom-admin.css', __FILE__ ) );
 }
 
-
 // Create the admin menu item as a submenu item of Settings
 add_action( 'admin_menu', 'divi_projects_cpt_rename_add_admin_menu' );
 function divi_projects_cpt_rename_add_admin_menu() {
     add_options_page(
-        'Divi - Rename Projects CPT Settings',   // $page_title (string)
-        'Rename Divi Projects',                  // $menu_title (string)
+        __( 'Divi - Rename Projects CPT Settings', 'divi-projects-cpt-rename' ),   // $page_title (string)
+        __( 'Rename Divi Projects', 'divi-projects-cpt-rename' ),                  // $menu_title (string)
         'manage_options',                        // $capability (string)
         'divi_projects_cpt_rename',              // $menu_slug (string)
         'divi_projects_cpt_rename_options_page', // $callback_function (callable)
