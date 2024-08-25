@@ -1,0 +1,1711 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Rename Divi Projects post type\n"
+"POT-Creation-Date: 2024-08-25 19:29+0100\n"
+"PO-Revision-Date: 2024-08-25 19:28+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wp-divi-rename-project.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: wp-divi-rename-project.php:26
+msgid ""
+"This plugin requires the Divi theme from Elegant Themes to be active. Please "
+"activate the Divi theme and try again."
+msgstr ""
+
+#: wp-divi-rename-project.php:49
+msgid "Divi - Rename Projects CPT Settings"
+msgstr ""
+
+#: wp-divi-rename-project.php:50 wp-divi-rename-project.php:824
+msgid "Rename Divi Projects"
+msgstr ""
+
+#: wp-divi-rename-project.php:61
+msgid "Settings"
+msgstr ""
+
+#: wp-divi-rename-project.php:84
+msgid "Custom Post Type Settings"
+msgstr ""
+
+#: wp-divi-rename-project.php:91
+msgid "Singular Name"
+msgstr ""
+
+#: wp-divi-rename-project.php:99
+msgid "Plural Name"
+msgstr ""
+
+#: wp-divi-rename-project.php:107
+msgid "Slug"
+msgstr ""
+
+#: wp-divi-rename-project.php:115
+msgid "Menu Icon"
+msgstr ""
+
+#: wp-divi-rename-project.php:124
+msgid "Category Settings"
+msgstr ""
+
+#: wp-divi-rename-project.php:131
+msgid "Category Singular Name"
+msgstr ""
+
+#: wp-divi-rename-project.php:139
+msgid "Category Plural Name"
+msgstr ""
+
+#: wp-divi-rename-project.php:147
+msgid "Category Slug"
+msgstr ""
+
+#: wp-divi-rename-project.php:156
+msgid "Tag Settings"
+msgstr ""
+
+#: wp-divi-rename-project.php:163
+msgid "Tag Singular Name"
+msgstr ""
+
+#: wp-divi-rename-project.php:171
+msgid "Tag Plural Name"
+msgstr ""
+
+#: wp-divi-rename-project.php:179
+msgid "Tag Slug"
+msgstr ""
+
+#: wp-divi-rename-project.php:237
+msgid "You do not have sufficient permissions to perform this action."
+msgstr ""
+
+#: wp-divi-rename-project.php:246
+msgid "Nonce verification failed."
+msgstr ""
+
+#. translators: %s: field name
+#: wp-divi-rename-project.php:283
+#, php-format
+msgid "The %s field cannot be empty."
+msgstr ""
+
+#: wp-divi-rename-project.php:330 wp-divi-rename-project.php:339
+#: wp-divi-rename-project.php:350 wp-divi-rename-project.php:761
+#: wp-divi-rename-project.php:770 wp-divi-rename-project.php:779
+#: wp-divi-rename-project.php:788 wp-divi-rename-project.php:798
+#: wp-divi-rename-project.php:807
+msgid "e.g."
+msgstr ""
+
+#: wp-divi-rename-project.php:330
+msgid "Project"
+msgstr ""
+
+#: wp-divi-rename-project.php:339
+msgid "Projects"
+msgstr ""
+
+#: wp-divi-rename-project.php:350
+msgid "project"
+msgstr ""
+
+#: wp-divi-rename-project.php:364
+msgid "Admin Menu"
+msgstr ""
+
+#: wp-divi-rename-project.php:365
+msgid "appearance"
+msgstr ""
+
+#: wp-divi-rename-project.php:366
+msgid "collapse"
+msgstr ""
+
+#: wp-divi-rename-project.php:367 wp-divi-rename-project.php:710
+msgid "comments"
+msgstr ""
+
+#: wp-divi-rename-project.php:368
+msgid "customizer"
+msgstr ""
+
+#: wp-divi-rename-project.php:369
+msgid "dashboard"
+msgstr ""
+
+#: wp-divi-rename-project.php:370 wp-divi-rename-project.php:450
+msgid "filter"
+msgstr ""
+
+#: wp-divi-rename-project.php:371
+msgid "generic"
+msgstr ""
+
+#: wp-divi-rename-project.php:372
+msgid "home"
+msgstr ""
+
+#: wp-divi-rename-project.php:373
+msgid "links"
+msgstr ""
+
+#: wp-divi-rename-project.php:374
+msgid "media"
+msgstr ""
+
+#: wp-divi-rename-project.php:375
+msgid "menu"
+msgstr ""
+
+#: wp-divi-rename-project.php:376
+msgid "menu (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:377
+msgid "menu (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:378
+msgid "menu (alt 3)"
+msgstr ""
+
+#: wp-divi-rename-project.php:379
+msgid "multisite"
+msgstr ""
+
+#: wp-divi-rename-project.php:380
+msgid "network"
+msgstr ""
+
+#: wp-divi-rename-project.php:381
+msgid "page"
+msgstr ""
+
+#: wp-divi-rename-project.php:382
+msgid "plugins"
+msgstr ""
+
+#: wp-divi-rename-project.php:383
+msgid "plugins checked"
+msgstr ""
+
+#: wp-divi-rename-project.php:384
+msgid "post"
+msgstr ""
+
+#: wp-divi-rename-project.php:385
+msgid "settings"
+msgstr ""
+
+#: wp-divi-rename-project.php:386
+msgid "site"
+msgstr ""
+
+#: wp-divi-rename-project.php:387
+msgid "site (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:388
+msgid "site (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:389
+msgid "site (alt 3)"
+msgstr ""
+
+#: wp-divi-rename-project.php:390
+msgid "tools"
+msgstr ""
+
+#: wp-divi-rename-project.php:391
+msgid "users"
+msgstr ""
+
+#: wp-divi-rename-project.php:393
+msgid "Block Editor"
+msgstr ""
+
+#: wp-divi-rename-project.php:394
+msgid "align full width"
+msgstr ""
+
+#: wp-divi-rename-project.php:395
+msgid "align pull left"
+msgstr ""
+
+#: wp-divi-rename-project.php:396
+msgid "align pull right"
+msgstr ""
+
+#: wp-divi-rename-project.php:397
+msgid "align wide"
+msgstr ""
+
+#: wp-divi-rename-project.php:398
+msgid "block default"
+msgstr ""
+
+#: wp-divi-rename-project.php:399
+msgid "button"
+msgstr ""
+
+#: wp-divi-rename-project.php:400
+msgid "cloud saved"
+msgstr ""
+
+#: wp-divi-rename-project.php:401
+msgid "cloud upload"
+msgstr ""
+
+#: wp-divi-rename-project.php:402
+msgid "columns"
+msgstr ""
+
+#: wp-divi-rename-project.php:403
+msgid "cover image"
+msgstr ""
+
+#: wp-divi-rename-project.php:404
+msgid "ellipsis"
+msgstr ""
+
+#: wp-divi-rename-project.php:405
+msgid "embed audio"
+msgstr ""
+
+#: wp-divi-rename-project.php:406
+msgid "embed generic"
+msgstr ""
+
+#: wp-divi-rename-project.php:407
+msgid "embed photo"
+msgstr ""
+
+#: wp-divi-rename-project.php:408
+msgid "embed post"
+msgstr ""
+
+#: wp-divi-rename-project.php:409
+msgid "embed video"
+msgstr ""
+
+#: wp-divi-rename-project.php:410
+msgid "exit"
+msgstr ""
+
+#: wp-divi-rename-project.php:411
+msgid "heading"
+msgstr ""
+
+#: wp-divi-rename-project.php:412
+msgid "HTML"
+msgstr ""
+
+#: wp-divi-rename-project.php:413
+msgid "info (outline)"
+msgstr ""
+
+#: wp-divi-rename-project.php:414
+msgid "insert"
+msgstr ""
+
+#: wp-divi-rename-project.php:415
+msgid "insert after"
+msgstr ""
+
+#: wp-divi-rename-project.php:416
+msgid "insert before"
+msgstr ""
+
+#: wp-divi-rename-project.php:417
+msgid "remove"
+msgstr ""
+
+#: wp-divi-rename-project.php:418
+msgid "saved (tick, check)"
+msgstr ""
+
+#: wp-divi-rename-project.php:419
+msgid "shortcode"
+msgstr ""
+
+#: wp-divi-rename-project.php:420
+msgid "table column after"
+msgstr ""
+
+#: wp-divi-rename-project.php:421
+msgid "table column before"
+msgstr ""
+
+#: wp-divi-rename-project.php:422
+msgid "table column delete"
+msgstr ""
+
+#: wp-divi-rename-project.php:423
+msgid "table row after"
+msgstr ""
+
+#: wp-divi-rename-project.php:424
+msgid "table row before"
+msgstr ""
+
+#: wp-divi-rename-project.php:425
+msgid "table row delete"
+msgstr ""
+
+#: wp-divi-rename-project.php:427
+msgid "Buddicons"
+msgstr ""
+
+#: wp-divi-rename-project.php:428
+msgid "activity"
+msgstr ""
+
+#: wp-divi-rename-project.php:429
+msgid "bbpress logo"
+msgstr ""
+
+#: wp-divi-rename-project.php:430
+msgid "buddypress logo"
+msgstr ""
+
+#: wp-divi-rename-project.php:431
+msgid "community"
+msgstr ""
+
+#: wp-divi-rename-project.php:432
+msgid "forums"
+msgstr ""
+
+#: wp-divi-rename-project.php:433
+msgid "friends"
+msgstr ""
+
+#: wp-divi-rename-project.php:434 wp-divi-rename-project.php:515
+msgid "groups"
+msgstr ""
+
+#: wp-divi-rename-project.php:435
+msgid "pm (personal message)"
+msgstr ""
+
+#: wp-divi-rename-project.php:436
+msgid "replies"
+msgstr ""
+
+#: wp-divi-rename-project.php:437
+msgid "topics"
+msgstr ""
+
+#: wp-divi-rename-project.php:438
+msgid "tracking"
+msgstr ""
+
+#: wp-divi-rename-project.php:440
+msgid "Databases"
+msgstr ""
+
+#: wp-divi-rename-project.php:441
+msgid "database"
+msgstr ""
+
+#: wp-divi-rename-project.php:442
+msgid "database add"
+msgstr ""
+
+#: wp-divi-rename-project.php:443
+msgid "database remove"
+msgstr ""
+
+#: wp-divi-rename-project.php:444
+msgid "database export"
+msgstr ""
+
+#: wp-divi-rename-project.php:445
+msgid "database import"
+msgstr ""
+
+#: wp-divi-rename-project.php:446
+msgid "database view"
+msgstr ""
+
+#: wp-divi-rename-project.php:448
+msgid "Image Editing"
+msgstr ""
+
+#: wp-divi-rename-project.php:449
+msgid "image crop"
+msgstr ""
+
+#: wp-divi-rename-project.php:451
+msgid "flip horizontal"
+msgstr ""
+
+#: wp-divi-rename-project.php:452
+msgid "flip vertical"
+msgstr ""
+
+#: wp-divi-rename-project.php:453
+msgid "redo"
+msgstr ""
+
+#: wp-divi-rename-project.php:454
+msgid "rotate"
+msgstr ""
+
+#: wp-divi-rename-project.php:455
+msgid "rotate left"
+msgstr ""
+
+#: wp-divi-rename-project.php:456
+msgid "rotate right"
+msgstr ""
+
+#: wp-divi-rename-project.php:457
+msgid "undo"
+msgstr ""
+
+#: wp-divi-rename-project.php:459
+msgid "Media"
+msgstr ""
+
+#: wp-divi-rename-project.php:460
+msgid "skip back"
+msgstr ""
+
+#: wp-divi-rename-project.php:461
+msgid "back"
+msgstr ""
+
+#: wp-divi-rename-project.php:462
+msgid "play"
+msgstr ""
+
+#: wp-divi-rename-project.php:463
+msgid "pause"
+msgstr ""
+
+#: wp-divi-rename-project.php:464
+msgid "forward"
+msgstr ""
+
+#: wp-divi-rename-project.php:465
+msgid "skip forward"
+msgstr ""
+
+#: wp-divi-rename-project.php:466
+msgid "repeat"
+msgstr ""
+
+#: wp-divi-rename-project.php:467
+msgid "volume off"
+msgstr ""
+
+#: wp-divi-rename-project.php:468
+msgid "volume on"
+msgstr ""
+
+#: wp-divi-rename-project.php:469 wp-divi-rename-project.php:717
+msgid "archive"
+msgstr ""
+
+#: wp-divi-rename-project.php:470 wp-divi-rename-project.php:577
+msgid "audio"
+msgstr ""
+
+#: wp-divi-rename-project.php:471 wp-divi-rename-project.php:679
+msgid "code"
+msgstr ""
+
+#: wp-divi-rename-project.php:472
+msgid "default"
+msgstr ""
+
+#: wp-divi-rename-project.php:473
+msgid "document"
+msgstr ""
+
+#: wp-divi-rename-project.php:474
+msgid "interactive"
+msgstr ""
+
+#: wp-divi-rename-project.php:475
+msgid "playlist audio"
+msgstr ""
+
+#: wp-divi-rename-project.php:476
+msgid "playlist video"
+msgstr ""
+
+#: wp-divi-rename-project.php:477
+msgid "spreadsheet"
+msgstr ""
+
+#: wp-divi-rename-project.php:478 wp-divi-rename-project.php:719
+msgid "text"
+msgstr ""
+
+#: wp-divi-rename-project.php:479 wp-divi-rename-project.php:587
+#: wp-divi-rename-project.php:706
+msgid "video"
+msgstr ""
+
+#: wp-divi-rename-project.php:481
+msgid "Miscellaneous"
+msgstr ""
+
+#: wp-divi-rename-project.php:482
+msgid "airplane"
+msgstr ""
+
+#: wp-divi-rename-project.php:483
+msgid "album"
+msgstr ""
+
+#: wp-divi-rename-project.php:484
+msgid "analytics"
+msgstr ""
+
+#: wp-divi-rename-project.php:485
+msgid "awards"
+msgstr ""
+
+#: wp-divi-rename-project.php:486
+msgid "backup"
+msgstr ""
+
+#: wp-divi-rename-project.php:487
+msgid "bank"
+msgstr ""
+
+#: wp-divi-rename-project.php:488
+msgid "beer"
+msgstr ""
+
+#: wp-divi-rename-project.php:489
+msgid "book"
+msgstr ""
+
+#: wp-divi-rename-project.php:490
+msgid "book (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:491
+msgid "building"
+msgstr ""
+
+#: wp-divi-rename-project.php:492
+msgid "businessman"
+msgstr ""
+
+#: wp-divi-rename-project.php:493
+msgid "businessperson"
+msgstr ""
+
+#: wp-divi-rename-project.php:494
+msgid "businesswoman"
+msgstr ""
+
+#: wp-divi-rename-project.php:495
+msgid "calculator"
+msgstr ""
+
+#: wp-divi-rename-project.php:496
+msgid "car"
+msgstr ""
+
+#: wp-divi-rename-project.php:497
+msgid "carrot"
+msgstr ""
+
+#: wp-divi-rename-project.php:498
+msgid "chart area"
+msgstr ""
+
+#: wp-divi-rename-project.php:499
+msgid "chart bar"
+msgstr ""
+
+#: wp-divi-rename-project.php:500
+msgid "chart line"
+msgstr ""
+
+#: wp-divi-rename-project.php:501
+msgid "chart pie"
+msgstr ""
+
+#: wp-divi-rename-project.php:502
+msgid "clock"
+msgstr ""
+
+#: wp-divi-rename-project.php:503
+msgid "coffee"
+msgstr ""
+
+#: wp-divi-rename-project.php:504
+msgid "color picker"
+msgstr ""
+
+#: wp-divi-rename-project.php:505
+msgid "desktop"
+msgstr ""
+
+#: wp-divi-rename-project.php:506
+msgid "download"
+msgstr ""
+
+#: wp-divi-rename-project.php:507
+msgid "drumstick"
+msgstr ""
+
+#: wp-divi-rename-project.php:508
+msgid "edit large"
+msgstr ""
+
+#: wp-divi-rename-project.php:509
+msgid "edit page"
+msgstr ""
+
+#: wp-divi-rename-project.php:510
+msgid "food"
+msgstr ""
+
+#: wp-divi-rename-project.php:511
+msgid "forms"
+msgstr ""
+
+#: wp-divi-rename-project.php:512
+msgid "fullscreen (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:513
+msgid "fullscreen exit (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:514
+msgid "games"
+msgstr ""
+
+#: wp-divi-rename-project.php:516
+msgid "hourglass"
+msgstr ""
+
+#: wp-divi-rename-project.php:517
+msgid "id"
+msgstr ""
+
+#: wp-divi-rename-project.php:518
+msgid "id (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:519
+msgid "index card"
+msgstr ""
+
+#: wp-divi-rename-project.php:520
+msgid "laptop"
+msgstr ""
+
+#: wp-divi-rename-project.php:521
+msgid "layout"
+msgstr ""
+
+#: wp-divi-rename-project.php:522
+msgid "lightbulb"
+msgstr ""
+
+#: wp-divi-rename-project.php:523
+msgid "location"
+msgstr ""
+
+#: wp-divi-rename-project.php:524
+msgid "location (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:525
+msgid "microphone"
+msgstr ""
+
+#: wp-divi-rename-project.php:526
+msgid "money"
+msgstr ""
+
+#: wp-divi-rename-project.php:527
+msgid "money (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:528
+msgid "open folder"
+msgstr ""
+
+#: wp-divi-rename-project.php:529
+msgid "palm tree"
+msgstr ""
+
+#: wp-divi-rename-project.php:530
+msgid "paperclip"
+msgstr ""
+
+#: wp-divi-rename-project.php:531
+msgid "pdf"
+msgstr ""
+
+#: wp-divi-rename-project.php:532
+msgid "pets"
+msgstr ""
+
+#: wp-divi-rename-project.php:533
+msgid "phone"
+msgstr ""
+
+#: wp-divi-rename-project.php:534
+msgid "portfolio"
+msgstr ""
+
+#: wp-divi-rename-project.php:535
+msgid "printer"
+msgstr ""
+
+#: wp-divi-rename-project.php:536
+msgid "privacy"
+msgstr ""
+
+#: wp-divi-rename-project.php:537
+msgid "products"
+msgstr ""
+
+#: wp-divi-rename-project.php:538
+msgid "search"
+msgstr ""
+
+#: wp-divi-rename-project.php:539
+msgid "shield"
+msgstr ""
+
+#: wp-divi-rename-project.php:540
+msgid "shield (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:541
+msgid "slides"
+msgstr ""
+
+#: wp-divi-rename-project.php:542
+msgid "smartphone"
+msgstr ""
+
+#: wp-divi-rename-project.php:543
+msgid "smiley"
+msgstr ""
+
+#: wp-divi-rename-project.php:544
+msgid "sos"
+msgstr ""
+
+#: wp-divi-rename-project.php:545
+msgid "store"
+msgstr ""
+
+#: wp-divi-rename-project.php:546
+msgid "superhero"
+msgstr ""
+
+#: wp-divi-rename-project.php:547
+msgid "superhero (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:548
+msgid "tablet"
+msgstr ""
+
+#: wp-divi-rename-project.php:549
+msgid "testimonial"
+msgstr ""
+
+#: wp-divi-rename-project.php:550
+msgid "text page"
+msgstr ""
+
+#: wp-divi-rename-project.php:551
+msgid "thumbs down"
+msgstr ""
+
+#: wp-divi-rename-project.php:552
+msgid "thumbs up"
+msgstr ""
+
+#: wp-divi-rename-project.php:553
+msgid "tickets (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:554
+msgid "upload"
+msgstr ""
+
+#: wp-divi-rename-project.php:555
+msgid "vault"
+msgstr ""
+
+#: wp-divi-rename-project.php:557
+msgid "Notifications"
+msgstr ""
+
+#: wp-divi-rename-project.php:558
+msgid "bell"
+msgstr ""
+
+#: wp-divi-rename-project.php:559
+msgid "yes"
+msgstr ""
+
+#: wp-divi-rename-project.php:560
+msgid "yes (alt) "
+msgstr ""
+
+#: wp-divi-rename-project.php:561
+msgid "no"
+msgstr ""
+
+#: wp-divi-rename-project.php:562
+msgid "no (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:563
+msgid "plus"
+msgstr ""
+
+#: wp-divi-rename-project.php:564
+msgid "plus (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:565
+msgid "plus (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:566
+msgid "minus"
+msgstr ""
+
+#: wp-divi-rename-project.php:567
+msgid "dismiss"
+msgstr ""
+
+#: wp-divi-rename-project.php:568
+msgid "marker"
+msgstr ""
+
+#: wp-divi-rename-project.php:569
+msgid "star filled"
+msgstr ""
+
+#: wp-divi-rename-project.php:570
+msgid "star half"
+msgstr ""
+
+#: wp-divi-rename-project.php:571
+msgid "star empty"
+msgstr ""
+
+#: wp-divi-rename-project.php:572
+msgid "flag"
+msgstr ""
+
+#: wp-divi-rename-project.php:573
+msgid "warning"
+msgstr ""
+
+#: wp-divi-rename-project.php:575
+msgid "Post Formats"
+msgstr ""
+
+#: wp-divi-rename-project.php:576
+msgid "aside"
+msgstr ""
+
+#: wp-divi-rename-project.php:578
+msgid "camera"
+msgstr ""
+
+#: wp-divi-rename-project.php:579
+msgid "camera (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:580
+msgid "chat"
+msgstr ""
+
+#: wp-divi-rename-project.php:581
+msgid "gallery"
+msgstr ""
+
+#: wp-divi-rename-project.php:582
+msgid "image"
+msgstr ""
+
+#: wp-divi-rename-project.php:583
+msgid "images (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:584
+msgid "images (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:585 wp-divi-rename-project.php:696
+msgid "quote"
+msgstr ""
+
+#: wp-divi-rename-project.php:586
+msgid "status"
+msgstr ""
+
+#: wp-divi-rename-project.php:588
+msgid "video (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:589
+msgid "video (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:590
+msgid "video (alt 3)"
+msgstr ""
+
+#: wp-divi-rename-project.php:592
+msgid "Posts Screen"
+msgstr ""
+
+#: wp-divi-rename-project.php:593 wp-divi-rename-project.php:674
+msgid "align center"
+msgstr ""
+
+#: wp-divi-rename-project.php:594 wp-divi-rename-project.php:675
+msgid "align left"
+msgstr ""
+
+#: wp-divi-rename-project.php:595
+msgid "align none"
+msgstr ""
+
+#: wp-divi-rename-project.php:596 wp-divi-rename-project.php:676
+msgid "align right"
+msgstr ""
+
+#: wp-divi-rename-project.php:597
+msgid "calendar"
+msgstr ""
+
+#: wp-divi-rename-project.php:598
+msgid "calendar (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:599
+msgid "edit"
+msgstr ""
+
+#: wp-divi-rename-project.php:600
+msgid "hidden"
+msgstr ""
+
+#: wp-divi-rename-project.php:601
+msgid "lock"
+msgstr ""
+
+#: wp-divi-rename-project.php:602
+msgid "post status"
+msgstr ""
+
+#: wp-divi-rename-project.php:603
+msgid "sticky"
+msgstr ""
+
+#: wp-divi-rename-project.php:604
+msgid "trash"
+msgstr ""
+
+#: wp-divi-rename-project.php:605
+msgid "unlock"
+msgstr ""
+
+#: wp-divi-rename-project.php:606
+msgid "visibility"
+msgstr ""
+
+#: wp-divi-rename-project.php:608
+msgid "Products"
+msgstr ""
+
+#: wp-divi-rename-project.php:609
+msgid "cart"
+msgstr ""
+
+#: wp-divi-rename-project.php:610
+msgid "cloud"
+msgstr ""
+
+#: wp-divi-rename-project.php:611
+msgid "feedback"
+msgstr ""
+
+#: wp-divi-rename-project.php:612
+msgid "info"
+msgstr ""
+
+#: wp-divi-rename-project.php:613
+msgid "pressthis"
+msgstr ""
+
+#: wp-divi-rename-project.php:614
+msgid "screen options"
+msgstr ""
+
+#: wp-divi-rename-project.php:615
+msgid "translation"
+msgstr ""
+
+#: wp-divi-rename-project.php:616
+msgid "update"
+msgstr ""
+
+#: wp-divi-rename-project.php:617
+msgid "update (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:618
+msgid "wordpress"
+msgstr ""
+
+#: wp-divi-rename-project.php:619
+msgid "wordpress (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:621
+msgid "Sorting"
+msgstr ""
+
+#: wp-divi-rename-project.php:622
+msgid "arrow down"
+msgstr ""
+
+#: wp-divi-rename-project.php:623
+msgid "arrow down (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:624
+msgid "arrow down (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:625
+msgid "arrow left"
+msgstr ""
+
+#: wp-divi-rename-project.php:626
+msgid "arrow left (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:627
+msgid "arrow left (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:628
+msgid "arrow right"
+msgstr ""
+
+#: wp-divi-rename-project.php:629
+msgid "arrow right (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:630
+msgid "arrow right (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:631
+msgid "arrow up"
+msgstr ""
+
+#: wp-divi-rename-project.php:632
+msgid "arrow up (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:633
+msgid "arrow up (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:634
+msgid "excerpt view"
+msgstr ""
+
+#: wp-divi-rename-project.php:635
+msgid "external"
+msgstr ""
+
+#: wp-divi-rename-project.php:636
+msgid "grid view"
+msgstr ""
+
+#: wp-divi-rename-project.php:637
+msgid "left right"
+msgstr ""
+
+#: wp-divi-rename-project.php:638
+msgid "list view"
+msgstr ""
+
+#: wp-divi-rename-project.php:639
+msgid "move"
+msgstr ""
+
+#: wp-divi-rename-project.php:640
+msgid "randomize"
+msgstr ""
+
+#: wp-divi-rename-project.php:641
+msgid "sort"
+msgstr ""
+
+#: wp-divi-rename-project.php:643
+msgid "Social"
+msgstr ""
+
+#: wp-divi-rename-project.php:644
+msgid "amazon"
+msgstr ""
+
+#: wp-divi-rename-project.php:645
+msgid "email"
+msgstr ""
+
+#: wp-divi-rename-project.php:646
+msgid "email (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:647
+msgid "email (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:648
+msgid "facebook"
+msgstr ""
+
+#: wp-divi-rename-project.php:649
+msgid "facebook (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:650
+msgid "google"
+msgstr ""
+
+#: wp-divi-rename-project.php:651
+msgid "instagram"
+msgstr ""
+
+#: wp-divi-rename-project.php:652
+msgid "linkedin"
+msgstr ""
+
+#: wp-divi-rename-project.php:653
+msgid "networking"
+msgstr ""
+
+#: wp-divi-rename-project.php:654
+msgid "pinterest"
+msgstr ""
+
+#: wp-divi-rename-project.php:655
+msgid "podio"
+msgstr ""
+
+#: wp-divi-rename-project.php:656
+msgid "reddit"
+msgstr ""
+
+#: wp-divi-rename-project.php:657
+msgid "rss"
+msgstr ""
+
+#: wp-divi-rename-project.php:658
+msgid "share"
+msgstr ""
+
+#: wp-divi-rename-project.php:659
+msgid "share (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:660
+msgid "share (alt 2)"
+msgstr ""
+
+#: wp-divi-rename-project.php:661
+msgid "spotify"
+msgstr ""
+
+#: wp-divi-rename-project.php:662
+msgid "twitch"
+msgstr ""
+
+#: wp-divi-rename-project.php:663
+msgid "twitter"
+msgstr ""
+
+#: wp-divi-rename-project.php:664
+msgid "twitter (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:665
+msgid "whatsapp"
+msgstr ""
+
+#: wp-divi-rename-project.php:666
+msgid "xing"
+msgstr ""
+
+#: wp-divi-rename-project.php:667
+msgid "youtube"
+msgstr ""
+
+#: wp-divi-rename-project.php:669
+msgid "Taxonomies"
+msgstr ""
+
+#: wp-divi-rename-project.php:670
+msgid "tag"
+msgstr ""
+
+#: wp-divi-rename-project.php:671
+msgid "category"
+msgstr ""
+
+#: wp-divi-rename-project.php:673
+msgid "TinyMCE"
+msgstr ""
+
+#: wp-divi-rename-project.php:677
+msgid "bold"
+msgstr ""
+
+#: wp-divi-rename-project.php:678
+msgid "break"
+msgstr ""
+
+#: wp-divi-rename-project.php:680
+msgid "contract"
+msgstr ""
+
+#: wp-divi-rename-project.php:681
+msgid "custom character"
+msgstr ""
+
+#: wp-divi-rename-project.php:682
+msgid "expand"
+msgstr ""
+
+#: wp-divi-rename-project.php:683
+msgid "help"
+msgstr ""
+
+#: wp-divi-rename-project.php:684
+msgid "indent"
+msgstr ""
+
+#: wp-divi-rename-project.php:685
+msgid "insert more"
+msgstr ""
+
+#: wp-divi-rename-project.php:686
+msgid "italic"
+msgstr ""
+
+#: wp-divi-rename-project.php:687
+msgid "justify"
+msgstr ""
+
+#: wp-divi-rename-project.php:688
+msgid "kitchen sink"
+msgstr ""
+
+#: wp-divi-rename-project.php:689
+msgid "ltr (left to right)"
+msgstr ""
+
+#: wp-divi-rename-project.php:690
+msgid "ordered list"
+msgstr ""
+
+#: wp-divi-rename-project.php:691
+msgid "ordered list (rtl)"
+msgstr ""
+
+#: wp-divi-rename-project.php:692
+msgid "outdent"
+msgstr ""
+
+#: wp-divi-rename-project.php:693
+msgid "paragraph"
+msgstr ""
+
+#: wp-divi-rename-project.php:694
+msgid "paste text"
+msgstr ""
+
+#: wp-divi-rename-project.php:695
+msgid "paste word"
+msgstr ""
+
+#: wp-divi-rename-project.php:697
+msgid "remove formatting"
+msgstr ""
+
+#: wp-divi-rename-project.php:698
+msgid "rtl (right to left)"
+msgstr ""
+
+#: wp-divi-rename-project.php:699
+msgid "spellcheck"
+msgstr ""
+
+#: wp-divi-rename-project.php:700
+msgid "strikethrough"
+msgstr ""
+
+#: wp-divi-rename-project.php:701
+msgid "table"
+msgstr ""
+
+#: wp-divi-rename-project.php:702
+msgid "textcolor"
+msgstr ""
+
+#: wp-divi-rename-project.php:703
+msgid "unordered list"
+msgstr ""
+
+#: wp-divi-rename-project.php:704
+msgid "underline"
+msgstr ""
+
+#: wp-divi-rename-project.php:705
+msgid "unlink"
+msgstr ""
+
+#: wp-divi-rename-project.php:708
+msgid "Welcome Screen"
+msgstr ""
+
+#: wp-divi-rename-project.php:709
+msgid "add page"
+msgstr ""
+
+#: wp-divi-rename-project.php:711
+msgid "learn more"
+msgstr ""
+
+#: wp-divi-rename-project.php:712
+msgid "view site"
+msgstr ""
+
+#: wp-divi-rename-project.php:713
+msgid "widgets menus"
+msgstr ""
+
+#: wp-divi-rename-project.php:714
+msgid "write blog"
+msgstr ""
+
+#: wp-divi-rename-project.php:716
+msgid "Widgets"
+msgstr ""
+
+#: wp-divi-rename-project.php:718
+msgid "tag cloud"
+msgstr ""
+
+#: wp-divi-rename-project.php:721
+msgid "WordPress.org"
+msgstr ""
+
+#: wp-divi-rename-project.php:722
+msgid "art"
+msgstr ""
+
+#: wp-divi-rename-project.php:723
+msgid "clipboard"
+msgstr ""
+
+#: wp-divi-rename-project.php:724
+msgid "code-standards"
+msgstr ""
+
+#: wp-divi-rename-project.php:725
+msgid "hammer"
+msgstr ""
+
+#: wp-divi-rename-project.php:726
+msgid "heart"
+msgstr ""
+
+#: wp-divi-rename-project.php:727
+msgid "megaphone"
+msgstr ""
+
+#: wp-divi-rename-project.php:728
+msgid "migrate"
+msgstr ""
+
+#: wp-divi-rename-project.php:729
+msgid "nametag"
+msgstr ""
+
+#: wp-divi-rename-project.php:730
+msgid "performance"
+msgstr ""
+
+#: wp-divi-rename-project.php:731
+msgid "rest api"
+msgstr ""
+
+#: wp-divi-rename-project.php:732
+msgid "schedule"
+msgstr ""
+
+#: wp-divi-rename-project.php:733
+msgid "tickets"
+msgstr ""
+
+#: wp-divi-rename-project.php:734
+msgid "tide"
+msgstr ""
+
+#: wp-divi-rename-project.php:735
+msgid "universal access "
+msgstr ""
+
+#: wp-divi-rename-project.php:736
+msgid "universal access (alt)"
+msgstr ""
+
+#: wp-divi-rename-project.php:752
+msgid "See"
+msgstr ""
+
+#: wp-divi-rename-project.php:752
+msgid "Dashicons"
+msgstr ""
+
+#: wp-divi-rename-project.php:752
+msgid "(opens new window)"
+msgstr ""
+
+#: wp-divi-rename-project.php:752
+msgid "Divi's default menu icon is"
+msgstr ""
+
+#: wp-divi-rename-project.php:752
+msgid "Admin Menu &gt; Post"
+msgstr ""
+
+#: wp-divi-rename-project.php:761
+msgid "Project Category"
+msgstr ""
+
+#: wp-divi-rename-project.php:761 wp-divi-rename-project.php:770
+#: wp-divi-rename-project.php:788 wp-divi-rename-project.php:798
+msgid "or"
+msgstr ""
+
+#: wp-divi-rename-project.php:761
+msgid "Category"
+msgstr ""
+
+#: wp-divi-rename-project.php:770
+msgid "Project Categories"
+msgstr ""
+
+#: wp-divi-rename-project.php:770
+msgid "Categories"
+msgstr ""
+
+#: wp-divi-rename-project.php:779
+msgid "project-category"
+msgstr ""
+
+#: wp-divi-rename-project.php:779
+msgid "Divi's default category slug is"
+msgstr ""
+
+#: wp-divi-rename-project.php:779
+msgid "project_category"
+msgstr ""
+
+#: wp-divi-rename-project.php:779 wp-divi-rename-project.php:807
+msgid "with an underscore."
+msgstr ""
+
+#: wp-divi-rename-project.php:788
+msgid "Project Tag"
+msgstr ""
+
+#: wp-divi-rename-project.php:788
+msgid "Tag"
+msgstr ""
+
+#: wp-divi-rename-project.php:798
+msgid "Project Tags"
+msgstr ""
+
+#: wp-divi-rename-project.php:798
+msgid "Tags"
+msgstr ""
+
+#: wp-divi-rename-project.php:807
+msgid "project-tag"
+msgstr ""
+
+#: wp-divi-rename-project.php:807
+msgid "Divi's default tag slug is"
+msgstr ""
+
+#: wp-divi-rename-project.php:807
+msgid "project_tag"
+msgstr ""
+
+#: wp-divi-rename-project.php:818
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: wp-divi-rename-project.php:825
+msgid "by"
+msgstr ""
+
+#: wp-divi-rename-project.php:834
+msgid "Reset to defaults"
+msgstr ""
+
+#: wp-divi-rename-project.php:835
+msgid "To"
+msgstr ""
+
+#: wp-divi-rename-project.php:835
+msgid "reset"
+msgstr ""
+
+#: wp-divi-rename-project.php:835
+msgid ""
+"this custom post type to the default Divi Project settings (1) go to the"
+msgstr ""
+
+#: wp-divi-rename-project.php:835
+msgid "Plugins"
+msgstr ""
+
+#: wp-divi-rename-project.php:835
+msgid "page and deactivate the"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: wp-divi-rename-project.php:835
+msgid "Rename Divi Projects post type"
+msgstr ""
+
+#: wp-divi-rename-project.php:835
+msgid "plugin then (2) go to"
+msgstr ""
+
+#: wp-divi-rename-project.php:835
+msgid "Settings &gt; Permalinks"
+msgstr ""
+
+#: wp-divi-rename-project.php:835
+msgid "and click the Save Changes button to flush the rewrite rules cache."
+msgstr ""
+
+#: wp-divi-rename-project.php:911 wp-divi-rename-project.php:912
+#: wp-divi-rename-project.php:941 wp-divi-rename-project.php:967
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#: wp-divi-rename-project.php:913 wp-divi-rename-project.php:936
+#: wp-divi-rename-project.php:962
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: wp-divi-rename-project.php:914 wp-divi-rename-project.php:939
+#: wp-divi-rename-project.php:965
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: wp-divi-rename-project.php:916
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: wp-divi-rename-project.php:917 wp-divi-rename-project.php:935
+#: wp-divi-rename-project.php:961
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: wp-divi-rename-project.php:918
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: wp-divi-rename-project.php:937 wp-divi-rename-project.php:963
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#: wp-divi-rename-project.php:938 wp-divi-rename-project.php:964
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: wp-divi-rename-project.php:940 wp-divi-rename-project.php:966
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: wp-divi-rename-project.php:942 wp-divi-rename-project.php:968
+#, php-format
+msgid "New %s Name"
+msgstr ""
+
+#: wp-divi-rename-project.php:944 wp-divi-rename-project.php:970
+#, php-format
+msgid "You currently don't have any %s."
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/garethjmsaunders/wp-divi-customise-project"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a "
+"user-defined name."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Digital Shed45 - Gareth J M Saunders"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://digitalshed45.co.uk"
+msgstr ""
