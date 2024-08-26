@@ -1,7 +1,7 @@
 <?php
 /*
- * Plugin Name:         Rename Divi Projects post type
- * Version:             1.4.0
+ * Plugin Name:         Rename Divi Projects
+ * Version:             1.5.0
  * Plugin URI:          https://github.com/garethjmsaunders/wp-divi-customise-project
  * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
  * Author:              Digital Shed45 - Gareth J M Saunders
@@ -48,9 +48,9 @@ add_action( 'admin_enqueue_scripts', 'divi_projects_cpt_rename_enqueue_custom_ad
 function divi_projects_cpt_rename_add_admin_menu() {
     add_options_page(
         __( 'Rename Divi Projects Settings', 'wp-divi-rename-project-cpt' ),   // $page_title (string)
-        __( 'Rename Divi Projects', 'wp-divi-rename-project-cpt' ),                  // $menu_title (string)
+        __( 'Rename Divi Projects', 'wp-divi-rename-project-cpt' ),            // $menu_title (string)
         'manage_options',                        // $capability (string)
-        'divi_projects_cpt_rename',              // $menu_slug (string)
+        'rename-divi-projects-settings',              // $menu_slug (string)
         'divi_projects_cpt_rename_options_page', // $callback_function (callable)
         null                                     // $position (int|float)
     );
@@ -58,13 +58,13 @@ function divi_projects_cpt_rename_add_admin_menu() {
 add_action( 'admin_menu', 'divi_projects_cpt_rename_add_admin_menu' );
 
 // Add settings link to Plugins page
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'divi_projects_cpt_rename_action_links' );
 function divi_projects_cpt_rename_action_links( $links ) {
-    $settings_link = '<a href="admin.php?page=divi_projects_cpt_rename">' . __( 'Settings', 'wp-divi-rename-project-cpt' ) . '</a>';
+    $settings_link = '<a href="admin.php?page=rename-divi-projects-settings">' . __( 'Settings', 'wp-divi-rename-project-cpt' ) . '</a>';
     // Prepend the settings link to the existing links array
     array_unshift( $links, $settings_link );
     return $links;
 }
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'divi_projects_cpt_rename_action_links' );
 
 // Register the settings
 add_action( 'admin_init', 'divi_projects_cpt_rename_settings_init' );
