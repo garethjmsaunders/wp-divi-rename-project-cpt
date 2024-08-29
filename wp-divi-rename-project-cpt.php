@@ -14,10 +14,12 @@
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  */
 
+
 // Exit if plugin accessed directly
 if ( !defined('ABSPATH') ) {
     exit;
 }
+
 
 // Check if Divi theme is active and deactivate plugin if not
 function divi_projects_cpt_rename_check_divi_theme_on_activation() {
@@ -44,6 +46,7 @@ function divi_projects_cpt_rename_enqueue_custom_admin_assets() {
 }
 add_action( 'admin_enqueue_scripts', 'divi_projects_cpt_rename_enqueue_custom_admin_assets' );
 
+
 // Create the admin menu item as a submenu item of Settings
 function divi_projects_cpt_rename_add_admin_menu() {
     add_options_page(
@@ -57,6 +60,7 @@ function divi_projects_cpt_rename_add_admin_menu() {
 }
 add_action( 'admin_menu', 'divi_projects_cpt_rename_add_admin_menu' );
 
+
 // Add settings link to Plugins page
 function divi_projects_cpt_rename_action_links( $links ) {
     $settings_link = '<a href="admin.php?page=rename-divi-projects-settings">' . __( 'Settings', 'wp-divi-rename-project-cpt' ) . '</a>';
@@ -65,6 +69,7 @@ function divi_projects_cpt_rename_action_links( $links ) {
     return $links;
 }
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'divi_projects_cpt_rename_action_links' );
+
 
 // Register the settings
 add_action( 'admin_init', 'divi_projects_cpt_rename_settings_init' );
@@ -203,6 +208,7 @@ function divi_projects_cpt_rename_settings_init() {
     add_action( 'admin_init', 'divi_projects_cpt_rename_init' );
 }
 
+
 /**
  * Converts a field key into a human-friendly label.
  * Required by Sanitize settings function.
@@ -220,6 +226,7 @@ function divi_projects_cpt_rename_humanize_field_name( $field_key ) {
     return $human_readable;
 }
 
+
 /**
  * Sanitize settings for the Divi Projects CPT Rename plugin.
  *
@@ -236,7 +243,7 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
      * If not, terminate the script with an error message.
      */
     if ( ! current_user_can( 'manage_options' ) ) {
-        wp_die( __( 'You do not have sufficient permissions to perform this action.', 'wp-divi-rename-project-cpt' ) );
+        wp_die( __( 'You do not have sufficient permissions to access this page.', 'wp-divi-rename-project-cpt' ) );
     }
 
     /**
@@ -329,7 +336,10 @@ function divi_projects_cpt_rename_singular_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[singular_name]" value="<?php echo isset( $options['singular_name'] ) ? esc_attr( $options['singular_name'] ) : 'Project'; ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Project', 'wp-divi-rename-project-cpt' ); ?></kbd></p>
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Project', 'wp-divi-rename-project-cpt' ); ?></kbd>
+    </p>
     <?php
 }
 
@@ -338,7 +348,10 @@ function divi_projects_cpt_rename_plural_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[plural_name]" value="<?php echo isset( $options['plural_name'] ) ? esc_attr( $options['plural_name'] ) : 'Projects'; ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Projects', 'wp-divi-rename-project-cpt' ); ?></kbd></p>
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Projects', 'wp-divi-rename-project-cpt' ); ?></kbd>
+    </p>
     <?php
 }
 
@@ -349,12 +362,12 @@ function divi_projects_cpt_rename_slug_render() {
 
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[slug]" value="<?php echo esc_attr( $slug ); ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'project', 'wp-divi-rename-project-cpt' ); ?></kbd></p>
-
-
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'project', 'wp-divi-rename-project-cpt' ); ?></kbd>
+    </p>
     <?php
 }
-
 
 // Menu Icon
 function divi_projects_cpt_rename_menu_icon_render() {
@@ -751,7 +764,12 @@ function divi_projects_cpt_rename_menu_icon_render() {
         </optgroup>
     <?php endforeach; ?>
 </select>
-    <p class="description"><?php esc_html_e( 'See', 'wp-divi-rename-project-cpt' ); ?> <a href="https://developer.wordpress.org/resource/dashicons/#layout" target="_blank"><?php esc_html_e( 'Dashicons', 'wp-divi-rename-project-cpt' ); ?></a> <?php esc_html_e( '(opens new window)', 'wp-divi-rename-project-cpt' ); ?><br /><?php esc_html_e( "Divi's default menu icon is", 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Admin Menu &gt; Post', 'wp-divi-rename-project-cpt' ); ?></kbd>.</p>
+    <p class="description">
+        <?php esc_html_e( 'See', 'wp-divi-rename-project-cpt' ); ?> <a href="https://developer.wordpress.org/resource/dashicons/#layout" target="_blank"><?php esc_html_e( 'Dashicons', 'wp-divi-rename-project-cpt' ); ?></a> 
+            <?php esc_html_e( '(opens new window)', 'wp-divi-rename-project-cpt' ); ?><br />
+            <?php esc_html_e( "Divi's default menu icon is", 'wp-divi-rename-project-cpt' ); ?> 
+            <kbd><?php esc_html_e( 'Admin Menu &gt; post', 'wp-divi-rename-project-cpt' ); ?></kbd>.
+        </p>
     <?php
     }
 
@@ -760,7 +778,12 @@ function divi_projects_cpt_rename_category_singular_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[category_singular_name]" value="<?php echo isset( $options['category_singular_name'] ) ? esc_attr( $options['category_singular_name'] ) : 'Project Category'; ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Project Category', 'wp-divi-rename-project-cpt' ); ?></kbd> <?php esc_html_e( 'or', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Category', 'wp-divi-rename-project-cpt' ); ?></kbd></p>
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Project Category', 'wp-divi-rename-project-cpt' ); ?></kbd> 
+        <?php esc_html_e( 'or', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Category', 'wp-divi-rename-project-cpt' ); ?></kbd>
+    </p>
     <?php
 }
 
@@ -769,7 +792,12 @@ function divi_projects_cpt_rename_category_plural_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[category_plural_name]" value="<?php echo isset( $options['category_plural_name'] ) ? esc_attr( $options['category_plural_name'] ) : 'Project Categories'; ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Project Categories', 'wp-divi-rename-project-cpt' ); ?></kbd> <?php esc_html_e( 'or', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Categories', 'wp-divi-rename-project-cpt' ); ?></kbd></p>
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Project Categories', 'wp-divi-rename-project-cpt' ); ?></kbd> 
+        <?php esc_html_e( 'or', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Categories', 'wp-divi-rename-project-cpt' ); ?></kbd>
+    </p>
     <?php
 }
 
@@ -778,7 +806,13 @@ function divi_projects_cpt_rename_category_slug_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[category_slug]" value="<?php echo isset( $options['category_slug'] ) ? esc_attr( $options['category_slug'] ) : 'project_category'; ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <code><?php esc_html_e( 'project-category', 'wp-divi-rename-project-cpt' ); ?></code><br /><?php esc_html_e( "Divi's default category slug is", 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'project_category', 'wp-divi-rename-project-cpt' ); ?></kbd> <?php esc_html_e( 'with an underscore.', 'wp-divi-rename-project-cpt' ); ?></p>
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'project-category', 'wp-divi-rename-project-cpt' ); ?></kbd><br />
+        <?php esc_html_e( "Divi's default category slug is", 'wp-divi-rename-project-cpt' ); ?>&nbsp;
+        <kbd><?php esc_html_e( 'project_category', 'wp-divi-rename-project-cpt' ); ?></kbd> 
+        <?php esc_html_e( 'with an underscore.', 'wp-divi-rename-project-cpt' ); ?>
+    </p>
     <?php
 }
 
@@ -787,8 +821,12 @@ function divi_projects_cpt_rename_tag_singular_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[tag_singular_name]" value="<?php echo isset( $options['tag_singular_name'] ) ? esc_attr( $options['tag_singular_name'] ) : 'Project Tag'; ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Project Tag', 'wp-divi-rename-project-cpt' ); ?></kbd> <?php esc_html_e( 'or', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Tag', 'wp-divi-rename-project-cpt' ); ?></kbd></p>
-
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Project Tag', 'wp-divi-rename-project-cpt' ); ?></kbd> 
+        &nbsp;<?php esc_html_e( 'or', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Tag', 'wp-divi-rename-project-cpt' ); ?></kbd>
+    </p>
     <?php
 }
 
@@ -797,7 +835,12 @@ function divi_projects_cpt_rename_tag_plural_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[tag_plural_name]" value="<?php echo isset( $options['tag_plural_name'] ) ? esc_attr( $options['tag_plural_name'] ) : 'Project Tags'; ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Project Tags', 'wp-divi-rename-project-cpt' ); ?></kbd> <?php esc_html_e( 'or', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'Tags', 'wp-divi-rename-project-cpt' ); ?></kbd></p>
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Project Tags', 'wp-divi-rename-project-cpt' ); ?></kbd> 
+        <?php esc_html_e( 'or', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'Tags', 'wp-divi-rename-project-cpt' ); ?></kbd>
+    </p>
     <?php
 }
 
@@ -806,7 +849,13 @@ function divi_projects_cpt_rename_tag_slug_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
     <input type="text" name="divi_projects_cpt_rename_settings[tag_slug]" value="<?php echo isset( $options['tag_slug'] ) ? esc_attr( $options['tag_slug'] ) : 'project_tag'; ?>">
-    <p class="description"><?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'project-tag', 'wp-divi-rename-project-cpt' ); ?></kbd><br /><?php esc_html_e( "Divi's default tag slug is", 'wp-divi-rename-project-cpt' ); ?> <kbd><?php esc_html_e( 'project_tag', 'wp-divi-rename-project-cpt' ); ?></kbd> <?php esc_html_e( 'with an underscore.', 'wp-divi-rename-project-cpt' ); ?></p>
+    <p class="description">
+        <?php esc_html_e( 'e.g.', 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'project-tag', 'wp-divi-rename-project-cpt' ); ?></kbd><br />
+        <?php esc_html_e( "Divi's default tag slug is", 'wp-divi-rename-project-cpt' ); ?> 
+        <kbd><?php esc_html_e( 'project_tag', 'wp-divi-rename-project-cpt' ); ?></kbd> 
+        <?php esc_html_e( 'with an underscore.', 'wp-divi-rename-project-cpt' ); ?>
+    </p>
     <?php
 }
 
