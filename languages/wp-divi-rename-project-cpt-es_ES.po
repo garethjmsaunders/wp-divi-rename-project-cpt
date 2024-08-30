@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rename Divi Projects\n"
 "POT-Creation-Date: 2024-08-29 19:54+0100\n"
-"PO-Revision-Date: 2024-08-29 19:55+0100\n"
+"PO-Revision-Date: 2024-08-30 15:34+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -178,7 +178,7 @@ msgstr "El slug de categoría predeterminado de Divi es"
 
 #: wp-divi-rename-project-cpt.php:813
 msgid "project_category"
-msgstr "proyecto_categoría"
+msgstr "project_category"
 
 #: wp-divi-rename-project-cpt.php:814 wp-divi-rename-project-cpt.php:857
 msgid "with an underscore."
@@ -210,7 +210,7 @@ msgstr "El slug de etiqueta predeterminado de Divi es"
 
 #: wp-divi-rename-project-cpt.php:856
 msgid "project_tag"
-msgstr "etiqueta_de_proyecto"
+msgstr "project_tag"
 
 #: wp-divi-rename-project-cpt.php:876
 msgid "by"

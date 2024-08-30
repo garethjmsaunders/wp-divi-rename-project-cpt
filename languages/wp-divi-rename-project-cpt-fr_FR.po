@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rename Divi Projects\n"
 "POT-Creation-Date: 2024-08-29 19:27+0100\n"
-"PO-Revision-Date: 2024-08-29 19:53+0100\n"
+"PO-Revision-Date: 2024-08-30 15:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -210,7 +210,7 @@ msgstr "Le slug de etiquette par défaut de Divi est"
 
 #: wp-divi-rename-project-cpt.php:856
 msgid "project_tag"
-msgstr "project_etiquette"
+msgstr "project_tag"
 
 #: wp-divi-rename-project-cpt.php:876
 msgid "by"
