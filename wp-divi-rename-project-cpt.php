@@ -885,6 +885,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
     );
     ?>
 
+<?php
 /**
  * Outputs the HTML select dropdown for choosing the menu icon for the custom post type.
  *
@@ -895,6 +896,7 @@ function divi_projects_cpt_rename_menu_icon_render() {
  *
  * @return void
  */
+?>
 <select name="divi_projects_cpt_rename_settings[menu_icon]" id="menu-icon-select">
     <?php foreach ( $menu_icons as $group => $icons ) : ?>
         <optgroup label="<?php echo esc_html__( $group, 'wp-divi-rename-project-cpt' ); ?>">
