@@ -15,75 +15,147 @@
  */
 
 
-// Exit if plugin accessed directly
+/**
+ * Prevents direct access to the plugin file.
+ *
+ * Exits the script if the plugin is accessed directly,
+ * ensuring that the code only runs within the WordPress environment.
+ */
 if ( !defined('ABSPATH') ) {
     exit;
 }
 
 
-// Check if Divi theme is active and deactivate plugin if not
+/**
+ * Checks if the Divi theme is active during plugin activation.
+ *
+ * This function runs on plugin activation to verify if the Divi theme is active.
+ * If the Divi theme is not active, the plugin is deactivated, and an error message
+ * is displayed to the user.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_check_divi_theme_on_activation() {
     $theme = wp_get_theme();
+
+    // Check if the current theme is Divi by name or template.
     if ( 'Divi' !== $theme->get( 'Name' ) && 'Divi' !== $theme->get( 'Template' ) ) {
+        // Deactivate the plugin if Divi theme is not active.
         deactivate_plugins( plugin_basename( __FILE__ ) );
+        
+        // Display an error message and stop the activation process.
         wp_die( __( 'This plugin requires the Divi theme from Elegant Themes to be active. Please activate the Divi theme and try again.', 'wp-divi-rename-project-cpt' ), 'Plugin Activation Error', array( 'back_link' => true ) );
     }
 }
+// Register the activation hook for the plugin.
 register_activation_hook( __FILE__, 'divi_projects_cpt_rename_check_divi_theme_on_activation' );
 
-// Load the Text Domain
+
+/**
+ * Loads the plugin's text domain for translation.
+ *
+ * This function loads the plugin's text domain to enable translation of
+ * strings within the plugin. It looks for translation files in the 
+ * '/languages' directory inside the plugin's folder.
+ *
+ * @return void
+ */
 function wpdocs_load_textdomain() {
 	load_plugin_textdomain( 'wp-divi-rename-project-cpt', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
 }
+// Hook the function to the 'init' action to load the text domain at the appropriate time.
 add_action( 'init', 'wpdocs_load_textdomain' );
 
 
-// Enqueue CSS
+/**
+ * Enqueues custom CSS and JavaScript assets for the admin area.
+ *
+ * This function enqueues the Dashicons library, a custom JavaScript file,
+ * and a custom CSS file specifically for the admin area of WordPress.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_enqueue_custom_admin_assets() {
+    // Enqueue the Dashicons library for use in the admin area.
     wp_enqueue_style( 'dashicons' );
+    
+    // Enqueue the custom JavaScript file with jQuery as a dependency, loaded in the footer.
     wp_enqueue_script( 'wp-divi-rename-project-cpt-js', plugins_url( '/wp-divi-rename-project-cpt.js', __FILE__ ), ['jquery'], null, true );
+    
+    // Enqueue the custom CSS file for styling in the admin area.
     wp_enqueue_style( 'wp-divi-rename-project-cpt-css', plugins_url( '/wp-divi-rename-project-cpt.css', __FILE__ ) );
 }
+// Hook the function to enqueue assets when scripts and styles are enqueued in the admin area.
 add_action( 'admin_enqueue_scripts', 'divi_projects_cpt_rename_enqueue_custom_admin_assets' );
 
 
-// Create the admin menu item as a submenu item of Settings
+/**
+ * Adds a submenu item to the WordPress admin settings menu for plugin settings.
+ *
+ * This function creates an admin menu item under the "Settings" menu in the WordPress
+ * admin area, allowing users to access the Rename Divi Projects settings page.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_add_admin_menu() {
     add_options_page(
         __( 'Rename Divi Projects Settings', 'wp-divi-rename-project-cpt' ),   // $page_title (string)
         __( 'Rename Divi Projects', 'wp-divi-rename-project-cpt' ),            // $menu_title (string)
         'manage_options',                        // $capability (string)
-        'rename-divi-projects-settings',              // $menu_slug (string)
+        'rename-divi-projects-settings',         // $menu_slug (string)
         'divi_projects_cpt_rename_options_page', // $callback_function (callable)
         null                                     // $position (int|float)
     );
 }
+// Hook the function to the 'admin_menu' action to register the submenu item.
 add_action( 'admin_menu', 'divi_projects_cpt_rename_add_admin_menu' );
 
 
-// Add settings link to Plugins page
+/**
+ * Adds a settings link to the plugin's action links on the Plugins page.
+ *
+ * This function adds a "Settings" link to the plugin's row on the Plugins page,
+ * making it easy for users to navigate directly to the plugin's settings page.
+ *
+ * @param array $links An array of existing action links for the plugin.
+ * @return array Modified array of action links with the added settings link.
+ */
 function divi_projects_cpt_rename_action_links( $links ) {
+    // Create the settings link pointing to the plugin's settings page.
     $settings_link = '<a href="admin.php?page=rename-divi-projects-settings">' . __( 'Settings', 'wp-divi-rename-project-cpt' ) . '</a>';
-    // Prepend the settings link to the existing links array
+    
+    // Prepend the settings link to the existing links array.
     array_unshift( $links, $settings_link );
+   
     return $links;
 }
+// Add the settings link to the action links for this plugin on the Plugins page.
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'divi_projects_cpt_rename_action_links' );
 
 
-// Register the settings
-add_action( 'admin_init', 'divi_projects_cpt_rename_settings_init' );
-
+/**
+ * Initializes and registers the plugin's settings, sections, and fields.
+ *
+ * This function sets up the settings for renaming Divi Projects custom post types, 
+ * categories, and tags. It registers the settings, adds sections, and adds fields 
+ * to the WordPress settings API, allowing customization through the admin panel.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_settings_init() {
 
-    // When registering the settings check the user capability.
-    // This ensures that only authorized users can register or modify
-    // the plugin settings.
+    // Check if the current user has the capability to manage options.
+    // This ensures that only authorized users can register or modify the plugin settings.
     if ( ! current_user_can( 'manage_options' ) ) {
         return;
     }
 
-    register_setting( 'divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings', 'divi_projects_cpt_rename_sanitize_settings' );
+    // Register the plugin settings with a sanitization callback.
+    register_setting( 
+        'divi_projects_cpt_rename_settings_group',
+        'divi_projects_cpt_rename_settings', 
+        'divi_projects_cpt_rename_sanitize_settings' 
+    );
 
     // Custom Post Type Settings Section
     add_settings_section(
@@ -93,6 +165,7 @@ function divi_projects_cpt_rename_settings_init() {
         'divi_projects_cpt_rename'
     );
 
+    // Register fields for custom post type settings.
     add_settings_field(
         'divi_projects_cpt_rename_singular_name',
         __( 'Singular Name', 'wp-divi-rename-project-cpt' ),
@@ -125,7 +198,7 @@ function divi_projects_cpt_rename_settings_init() {
         'divi_projects_cpt_rename_cpt_settings_section'
     );
 
-    // Category Section
+    // Category Settings Section
     add_settings_section(
         'divi_projects_cpt_rename_category_settings_section',
         __( 'Category Settings', 'wp-divi-rename-project-cpt' ),
@@ -133,6 +206,7 @@ function divi_projects_cpt_rename_settings_init() {
         'divi_projects_cpt_rename'
     );
 
+    // Register fields for category settings.
     add_settings_field(
         'divi_projects_cpt_rename_category_singular_name',
         __( 'Category Singular Name', 'wp-divi-rename-project-cpt' ),
@@ -157,7 +231,7 @@ function divi_projects_cpt_rename_settings_init() {
         'divi_projects_cpt_rename_category_settings_section'
     );
 
-    // Tag Section
+    // Tag Settings Section
     add_settings_section(
         'divi_projects_cpt_rename_tag_settings_section',
         __( 'Tag Settings', 'wp-divi-rename-project-cpt' ),
@@ -165,6 +239,7 @@ function divi_projects_cpt_rename_settings_init() {
         'divi_projects_cpt_rename'
     );
 
+    // Register fields for tag settings.
     add_settings_field(
         'divi_projects_cpt_rename_tag_singular_name',
         __( 'Tag Singular Name', 'wp-divi-rename-project-cpt' ),
@@ -189,24 +264,42 @@ function divi_projects_cpt_rename_settings_init() {
         'divi_projects_cpt_rename_tag_settings_section'
     );
 
-    // Hook into the settings update process
+    // Hook into the settings update process to flush permalinks if settings are updated.
     add_action( 'update_option_divi_projects_cpt_rename_settings', 'divi_projects_cpt_rename_flush_permalinks_after_settings_update', 10, 2 );
 
-    // Function to flush permalinks
+    /**
+     * Flushes rewrite rules when the settings are updated.
+     *
+     * This function ensures that permalink changes take effect by flushing
+     * rewrite rules when settings have been updated and the values have changed.
+     *
+     * @param mixed $old_value The old value of the settings.
+     * @param mixed $new_value The new value of the settings.
+     * @return void
+     */
     function divi_projects_cpt_rename_flush_permalinks_after_settings_update($old_value, $new_value) {
-        // Check if the values have changed to avoid unnecessary flushes
+        
+        // Check if the settings values have changed to avoid unnecessary permalinks flush.
         if ( $old_value !== $new_value ) {
             flush_rewrite_rules();
         }
     }
 
-    // Initialize the plugin settings
+    /**
+     * Initializes the plugin settings on admin initialization.
+     *
+     * Registers the settings group and settings fields used in the admin area.
+     *
+     * @return void
+     */
     function divi_projects_cpt_rename_init() {
-        // Register the settings
         register_setting( 'divi_projects_cpt_rename_settings_group', 'divi_projects_cpt_rename_settings' );
     }
+    // Hook the settings initialization function into the 'admin_init' action.
     add_action( 'admin_init', 'divi_projects_cpt_rename_init' );
 }
+// Hook the settings initialization function into the 'admin_init' action.
+add_action( 'admin_init', 'divi_projects_cpt_rename_settings_init' );
 
 
 /**
@@ -331,7 +424,16 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
 }
 
 
-// Singular Name
+/**
+ * Singular name
+ * Renders the input field for the singular name setting of the custom post type.
+ *
+ * This function outputs a text input field where users can specify the singular
+ * name of the custom post type. The field value is retrieved from the plugin's
+ * settings, with a default of "Project" if no value is set.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_singular_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
@@ -343,7 +445,16 @@ function divi_projects_cpt_rename_singular_name_render() {
     <?php
 }
 
-// Plural Name
+/**
+ * Plural name
+ * Renders the input field for the plural name setting of the custom post type.
+ *
+ * This function outputs a text input field where users can specify the plural
+ * name of the custom post type. The field value is retrieved from the plugin's
+ * settings, with a default of "Projects" if no value is set.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_plural_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
@@ -355,7 +466,17 @@ function divi_projects_cpt_rename_plural_name_render() {
     <?php
 }
 
-// Slug
+
+/**
+ * Slug
+ * Renders the input field for the slug setting of the custom post type.
+ *
+ * This function outputs a text input field where users can specify the slug
+ * for the custom post type. The field value is retrieved from the plugin's
+ * settings, with a default of "project" if no value is set.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_slug_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     $slug = isset( $options['slug'] ) ? $options['slug'] : 'project';
@@ -369,12 +490,23 @@ function divi_projects_cpt_rename_slug_render() {
     <?php
 }
 
-// Menu Icon
+
+/**
+ * Menu
+ * Renders the dropdown menu for selecting the menu icon for the custom post type.
+ *
+ * This function outputs a dropdown menu that allows users to select a menu icon for the custom
+ * post type. The selected icon value is retrieved from the plugin's settings, with a default
+ * of 'dashicons-portfolio' if no value is set. The available icons are whitelisted and grouped
+ * by categories for easier selection.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_menu_icon_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     $selected_icon = isset( $options['menu_icon'] ) ? esc_attr( $options['menu_icon'] ) : 'dashicons-portfolio';
 
-    // Whitelisted menu icon values
+    // Whitelisted menu icon values grouped by categories
     $menu_icons = array(
         'Admin Menu' => array(
             'dashicons-admin-appearance'            => 'appearance',
@@ -753,6 +885,16 @@ function divi_projects_cpt_rename_menu_icon_render() {
     );
     ?>
 
+/**
+ * Outputs the HTML select dropdown for choosing the menu icon for the custom post type.
+ *
+ * This section generates a dropdown list with grouped icon options for the user to select the 
+ * desired menu icon for the custom post type. The icons are organized into categories, making 
+ * it easier for users to find and select the appropriate icon. It includes a helpful description 
+ * and link to the Dashicons resource for reference.
+ *
+ * @return void
+ */
 <select name="divi_projects_cpt_rename_settings[menu_icon]" id="menu-icon-select">
     <?php foreach ( $menu_icons as $group => $icons ) : ?>
         <optgroup label="<?php echo esc_html__( $group, 'wp-divi-rename-project-cpt' ); ?>">
@@ -773,7 +915,17 @@ function divi_projects_cpt_rename_menu_icon_render() {
     <?php
     }
 
-// Category Singular Name
+
+/**
+ * Category Singular Name
+ * Renders the input field for the singular name of the category associated with the custom post type.
+ *
+ * This function outputs a text input field where users can specify the singular name of the category 
+ * associated with the custom post type. The value is retrieved from the plugin's settings, with a default 
+ * of "Project Category" if no value is set. It includes a description with example names for guidance.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_category_singular_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
@@ -787,7 +939,17 @@ function divi_projects_cpt_rename_category_singular_name_render() {
     <?php
 }
 
-// Category Plural Name
+
+/**
+ * Category Plural Name
+ * Renders the input field for the plural name of the categories associated with the custom post type.
+ *
+ * This function generates a text input field allowing users to specify the plural name of the categories 
+ * related to the custom post type. The input value is fetched from the plugin's settings, defaulting to 
+ * "Project Categories" if not set. A description with example names is provided to guide the user.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_category_plural_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
@@ -801,7 +963,18 @@ function divi_projects_cpt_rename_category_plural_name_render() {
     <?php
 }
 
-// Category Slug
+
+/**
+ * Category Slug
+ * Renders the input field for the slug of the category associated with the custom post type.
+ *
+ * This function displays a text input field where users can define the slug for the category 
+ * related to the custom post type. The slug is fetched from the plugin's settings, defaulting 
+ * to "project_category" if not set. A description with examples and guidance on the default 
+ * naming convention is provided to assist the user.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_category_slug_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
@@ -816,7 +989,18 @@ function divi_projects_cpt_rename_category_slug_render() {
     <?php
 }
 
-// Tag Singular Name
+
+/**
+ * Tag Singular Name
+ * Renders the input field for the singular name of the tag associated with the custom post type.
+ *
+ * This function outputs a text input field that allows users to specify the singular name of the tag 
+ * related to the custom post type. The value is retrieved from the plugin's settings, with a default 
+ * value of "Project Tag" if not set. The function also provides a description with example names to 
+ * guide the user in defining the tag's singular name.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_tag_singular_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
@@ -830,7 +1014,18 @@ function divi_projects_cpt_rename_tag_singular_name_render() {
     <?php
 }
 
-// Tag Plural Name
+
+/**
+ * Tag Plural Name
+ * Renders the input field for the plural name of the tags associated with the custom post type.
+ *
+ * This function displays a text input field that allows users to set the plural name for the tags 
+ * related to the custom post type. The input value is retrieved from the plugin's settings, defaulting 
+ * to "Project Tags" if not set. It includes a description with example names to guide the user in 
+ * choosing appropriate labels.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_tag_plural_name_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
@@ -844,7 +1039,17 @@ function divi_projects_cpt_rename_tag_plural_name_render() {
     <?php
 }
 
-// Tag Slug
+
+/**
+ * Tag Slug
+ * Renders the input field for the slug of the tag associated with the custom post type.
+ *
+ * This function generates a text input field for setting the slug of the tag related to the custom 
+ * post type. The slug is retrieved from the plugin's settings, defaulting to "project_tag" if not set. 
+ * The field includes a description with examples and guidance on the default slug format.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_tag_slug_render() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     ?>
@@ -859,7 +1064,32 @@ function divi_projects_cpt_rename_tag_slug_render() {
     <?php
 }
 
-// Display settings page
+
+/**
+ * Options page
+ * Renders the options page for the "Rename Divi Projects" plugin.
+ *
+ * This function generates the settings page for the plugin under the "Settings" menu in the WordPress 
+ * admin area. It checks if the current user has the capability to manage options (`manage_options`), 
+ * and if not, it terminates execution with an error message.
+ *
+ * The settings page includes:
+ * - A header displaying the plugin title and version.
+ * - A form for managing plugin settings, including fields for plugin options and a nonce for security.
+ * - A "Reset to defaults" section with instructions on how to revert to the default Divi Project settings 
+ *   by deactivating the plugin and flushing rewrite rules.
+ *
+ * Actions performed:
+ * - Uses `settings_fields()` to output nonce, action, and option group fields for the settings form.
+ * - Uses `do_settings_sections()` to output all settings sections and fields for the plugin.
+ * - Uses `wp_nonce_field()` to add a nonce field for security purposes.
+ * - Uses `submit_button()` to render the submit button for the form.
+ *
+ * If the user lacks the required permissions, the function calls `wp_die()` to halt execution and display
+ * an error message.
+ *
+ * @return void
+ */
 function divi_projects_cpt_rename_options_page() {
     if ( ! current_user_can( 'manage_options' ) ) {
         // Check user capabilities
@@ -889,59 +1119,164 @@ function divi_projects_cpt_rename_options_page() {
 }
 
 
-// Get settings values
-// Ternary operator format: (if statement is true) ? (do this) : (else, do this);
+/**
+ * Retrieves the singular name setting for the custom post type.
+ *
+ * Gets the value of the 'singular_name' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'Project'.
+ * 
+ * Ternary operator format: (if statement is true) ? (do this) : (else, do this);
+ *
+ * @return string The singular name of the custom post type.
+ */
 function divi_projects_cpt_rename_get_singular_name() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['singular_name'] ) ? $options['singular_name'] : 'Project';
 }
 
+
+/**
+ * Retrieves the plural name setting for the custom post type.
+ *
+ * Gets the value of the 'plural_name' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'Projects'.
+ *
+ * @return string The plural name of the custom post type.
+ */
 function divi_projects_cpt_rename_get_plural_name() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['plural_name'] ) ? $options['plural_name'] : 'Projects';
 }
 
+
+/**
+ * Retrieves the slug setting for the custom post type.
+ *
+ * Gets the value of the 'slug' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'project'.
+ *
+ * @return string The slug of the custom post type.
+ */
 function divi_projects_cpt_rename_get_slug() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['slug'] ) ? $options['slug'] : 'project';
 }
 
+
+/**
+ * Retrieves the menu icon setting for the custom post type.
+ *
+ * Gets the value of the 'menu_icon' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'dashicons-portfolio'.
+ *
+ * @return string The menu icon class for the custom post type.
+ */
 function divi_projects_cpt_rename_get_menu_icon() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['menu_icon'] ) ? $options['menu_icon'] : 'dashicons-portfolio';
 }
 
+
+/**
+ * Retrieves the singular name for the category taxonomy.
+ *
+ * Gets the value of the 'category_singular_name' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'Project Category'.
+ *
+ * @return string The singular name for the category taxonomy.
+ */
 function divi_projects_cpt_rename_get_category_singular_name() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['category_singular_name'] ) ? $options['category_singular_name'] : 'Project Category';
 }
 
+
+/**
+ * Retrieves the plural name for the category taxonomy.
+ *
+ * Gets the value of the 'category_plural_name' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'Project Categories'.
+ *
+ * @return string The plural name for the category taxonomy.
+ */
 function divi_projects_cpt_rename_get_category_plural_name() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['category_plural_name'] ) ? $options['category_plural_name'] : 'Project Categories';
 }
 
+
+/**
+ * Retrieves the slug for the category taxonomy.
+ *
+ * Gets the value of the 'category_slug' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'project_category'.
+ *
+ * @return string The slug for the category taxonomy.
+ */
 function divi_projects_cpt_rename_get_category_slug() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['category_slug'] ) ? $options['category_slug'] : 'project_category';
 }
 
+
+/**
+ * Retrieves the singular name for the tag taxonomy.
+ *
+ * Gets the value of the 'tag_singular_name' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'Project Tag'.
+ *
+ * @return string The singular name for the tag taxonomy.
+ */
 function divi_projects_cpt_rename_get_tag_singular_name() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['tag_singular_name'] ) ? $options['tag_singular_name'] : 'Project Tag';
 }
 
+
+/**
+ * Retrieves the plural name for the tag taxonomy.
+ *
+ * Gets the value of the 'tag_plural_name' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'Project Tags'.
+ *
+ * @return string The plural name for the tag taxonomy.
+ */
 function divi_projects_cpt_rename_get_tag_plural_name() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['tag_plural_name'] ) ? $options['tag_plural_name'] : 'Project Tags';
 }
 
+
+/**
+ * Retrieves the slug for the tag taxonomy.
+ *
+ * Gets the value of the 'tag_slug' option from the plugin settings. If the option is not set, 
+ * it returns a default value of 'project_tag'.
+ *
+ * @return string The slug for the tag taxonomy.
+ */
 function divi_projects_cpt_rename_get_tag_slug() {
     $options = get_option( 'divi_projects_cpt_rename_settings' );
     return isset( $options['tag_slug'] ) ? $options['tag_slug'] : 'project_tag';
 }
 
-// Change the Divi Projects custom post type
+
+/**
+ * Change the Divi Projects custom post type
+ * Registers the custom post type and taxonomies with new values.
+ *
+ * This function is hooked to the 'init' action and updates the default 
+ * settings for the custom post type 'project' and its associated taxonomies.
+ * It uses values obtained from settings options and then registers:
+ * - A custom post type with updated labels, icon, and slug.
+ * - A hierarchical taxonomy for categories with updated labels and slug.
+ * - A hierarchical taxonomy for tags with updated labels and slug.
+ *
+ * After registering the post type and taxonomies, it flushes rewrite rules
+ * to ensure that the changes are reflected immediately.
+ *
+ * @return void
+ */
 add_action( 'init', 'divi_projects_cpt_rename_register_new_values' );
 function divi_projects_cpt_rename_register_new_values() {
     $singular_name          = divi_projects_cpt_rename_get_singular_name();
@@ -955,6 +1290,7 @@ function divi_projects_cpt_rename_register_new_values() {
     $tag_plural_name        = divi_projects_cpt_rename_get_tag_plural_name();
     $tag_slug               = divi_projects_cpt_rename_get_tag_slug();
 
+    // Register the custom post type 'project'
     register_post_type( 'project', [
         'labels'            => [
             'name'          => __( $plural_name, 'wp-divi-rename-project-cpt' ),
@@ -978,6 +1314,7 @@ function divi_projects_cpt_rename_register_new_values() {
         ],
     ] );
 
+    // Register the taxonomy 'project_category' for the 'project' post type
     register_taxonomy( 'project_category', array( 'project' ), [
         'hierarchical' => true,
         'labels'                => [
@@ -1004,6 +1341,7 @@ function divi_projects_cpt_rename_register_new_values() {
         ],
     ]);
 
+    // Register the taxonomy 'project_tag' for the 'project' post type
     register_taxonomy( 'project_tag', array('project'), [
         'hierarchical' => true,
         'labels'                => [
@@ -1030,6 +1368,25 @@ function divi_projects_cpt_rename_register_new_values() {
         ],
     ] );
 
-    // Flush WordPress rewrite (permalink) rules
+
+    /**
+     * Flushes the WordPress rewrite (permalink) rules.
+     *
+     * This function clears the rewrite rules and rebuilds them based on the current
+     * configuration of custom post types, taxonomies, and other URL structures. It
+     * should be used after registering or modifying custom post types or taxonomies
+     * to ensure that new or updated rewrite rules are applied.
+     *
+     * This function is typically called after using functions such as
+     * `register_post_type()` and `register_taxonomy()` to ensure that the new
+     * URL structures are recognized by WordPress.
+     *
+     * Note: Frequent use of this function is not recommended as it can impact performance
+     * by forcing WordPress to regenerate its rewrite rules on every page load. It is
+     * usually called only once, immediately after the custom post type or taxonomy
+     * registration functions are called.
+     *
+     * @return void
+     */
     flush_rewrite_rules();
 }
