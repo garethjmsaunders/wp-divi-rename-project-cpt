@@ -22,24 +22,6 @@
     font-size: 16px;
 }
 
-.ds45 {
-    float: right;
-    font-size: 1.2em;
-    font-style: italic;
-}
-
-.ds45 a {
-    color: #000;
-    text-decoration: none;
-    font-style: normal;
-    font-weight: 600;
-}
-
-.ds45 a:hover {
-    color: #6c2eb9;
-    text-decoration: underline;
-}
-
 
 /* Select2 JavaScript library
  *
