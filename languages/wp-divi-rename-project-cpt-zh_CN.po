@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Rename Divi Projects\n"
-"POT-Creation-Date: 2024-08-31 13:51+0100\n"
-"PO-Revision-Date: 2024-08-31 13:57+0100\n"
+"POT-Creation-Date: 2024-09-15 14:27+0100\n"
+"PO-Revision-Date: 2024-09-15 14:27+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: wp-divi-rename-project-cpt.php\n"
@@ -212,113 +212,109 @@ msgstr "Divi 的默认标签 slug 是"
 msgid "project_tag"
 msgstr "project_tag"
 
-#: wp-divi-rename-project-cpt.php:1121
-msgid "by"
-msgstr "由"
-
-#: wp-divi-rename-project-cpt.php:1130
+#: wp-divi-rename-project-cpt.php:1129
 msgid "Reset to defaults"
 msgstr "重置为默认值"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid "To"
 msgstr "到"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid "reset"
 msgstr "重置"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid ""
 "this custom post type to the default Divi Project settings (1) navigate to"
 msgstr "此自定义帖子类型设置为默认的 Divi 项目设置 （1） 导航到"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid "Plugins"
 msgstr "插件"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid "and deactivate the"
 msgstr "并停用"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid "Rename Divi Projects post type"
 msgstr "重命名 Divi Projects 帖子类型"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid "plugin then (2) go to"
 msgstr "plugin 然后 （2） 转到"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid "Settings &gt; Permalinks"
 msgstr "设置 &gt; 固定链接设置"
 
-#: wp-divi-rename-project-cpt.php:1131
+#: wp-divi-rename-project-cpt.php:1130
 msgid "and click the Save Changes button to flush the rewrite rules cache."
 msgstr "，然后单击 Save Changes 按钮以刷新重写规则缓存。"
 
-#: wp-divi-rename-project-cpt.php:1312 wp-divi-rename-project-cpt.php:1313
-#: wp-divi-rename-project-cpt.php:1343 wp-divi-rename-project-cpt.php:1370
+#: wp-divi-rename-project-cpt.php:1311 wp-divi-rename-project-cpt.php:1312
+#: wp-divi-rename-project-cpt.php:1342 wp-divi-rename-project-cpt.php:1369
 #, php-format
 msgid "Add New %s"
 msgstr "添加新的 %s"
 
-#: wp-divi-rename-project-cpt.php:1314 wp-divi-rename-project-cpt.php:1338
-#: wp-divi-rename-project-cpt.php:1365
+#: wp-divi-rename-project-cpt.php:1313 wp-divi-rename-project-cpt.php:1337
+#: wp-divi-rename-project-cpt.php:1364
 #, php-format
 msgid "All %s"
 msgstr "所有 %s"
 
-#: wp-divi-rename-project-cpt.php:1315 wp-divi-rename-project-cpt.php:1341
-#: wp-divi-rename-project-cpt.php:1368
+#: wp-divi-rename-project-cpt.php:1314 wp-divi-rename-project-cpt.php:1340
+#: wp-divi-rename-project-cpt.php:1367
 #, php-format
 msgid "Edit %s"
 msgstr "编辑 %s"
 
-#: wp-divi-rename-project-cpt.php:1317
+#: wp-divi-rename-project-cpt.php:1316
 #, php-format
 msgid "New %s"
 msgstr "新 %s"
 
-#: wp-divi-rename-project-cpt.php:1318 wp-divi-rename-project-cpt.php:1337
-#: wp-divi-rename-project-cpt.php:1364
+#: wp-divi-rename-project-cpt.php:1317 wp-divi-rename-project-cpt.php:1336
+#: wp-divi-rename-project-cpt.php:1363
 #, php-format
 msgid "Search %s"
 msgstr "搜索 %s"
 
-#: wp-divi-rename-project-cpt.php:1319
+#: wp-divi-rename-project-cpt.php:1318
 #, php-format
 msgid "View %s"
 msgstr "查看 %s"
 
-#: wp-divi-rename-project-cpt.php:1339 wp-divi-rename-project-cpt.php:1366
+#: wp-divi-rename-project-cpt.php:1338 wp-divi-rename-project-cpt.php:1365
 #, php-format
 msgid "Parent %s"
 msgstr "父级 %s"
 
-#: wp-divi-rename-project-cpt.php:1340 wp-divi-rename-project-cpt.php:1367
+#: wp-divi-rename-project-cpt.php:1339 wp-divi-rename-project-cpt.php:1366
 #, php-format
 msgid "Parent %s:"
 msgstr "父级 %s:"
 
-#: wp-divi-rename-project-cpt.php:1342 wp-divi-rename-project-cpt.php:1369
+#: wp-divi-rename-project-cpt.php:1341 wp-divi-rename-project-cpt.php:1368
 #, php-format
 msgid "Update %s"
 msgstr "更新 %s"
 
-#: wp-divi-rename-project-cpt.php:1344 wp-divi-rename-project-cpt.php:1371
+#: wp-divi-rename-project-cpt.php:1343 wp-divi-rename-project-cpt.php:1370
 #, php-format
 msgid "New %s Name"
 msgstr "新 %s 名称"
 
-#: wp-divi-rename-project-cpt.php:1346 wp-divi-rename-project-cpt.php:1373
+#: wp-divi-rename-project-cpt.php:1345 wp-divi-rename-project-cpt.php:1372
 #, php-format
 msgid "You currently don't have any %s."
 msgstr "您目前没有任何%s。"
 
 #. Plugin URI of the plugin/theme
-msgid "https://github.com/garethjmsaunders/wp-divi-customise-project"
-msgstr "https://github.com/garethjmsaunders/wp-divi-customise-project"
+msgid "https://digitalshed45.co.uk/rename-divi-projects-plugin/"
+msgstr "https://digitalshed45.co.uk/rename-divi-projects-plugin/"
 
 #. Description of the plugin/theme
 msgid ""
@@ -335,3 +331,9 @@ msgstr "Digital Shed45 - Gareth J M Saunders"
 #. Author URI of the plugin/theme
 msgid "https://digitalshed45.co.uk"
 msgstr "https://digitalshed45.co.uk"
+
+#~ msgid "by"
+#~ msgstr "由"
+
+#~ msgid "https://github.com/garethjmsaunders/wp-divi-customise-project"
+#~ msgstr "https://github.com/garethjmsaunders/wp-divi-customise-project"
