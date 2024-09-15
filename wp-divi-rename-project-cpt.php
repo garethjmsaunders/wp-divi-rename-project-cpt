@@ -1,15 +1,15 @@
 <?php
 /*
  * Plugin Name:         Rename Divi Projects
- * Version:             1.5.1
- * Plugin URI:          https://github.com/garethjmsaunders/wp-divi-customise-project
+ * Version:             1.0.0
+ * Plugin URI:          https://digitalshed45.co.uk/rename-divi-projects-plugin/
  * Description:         Requires Divi by Elegant Themes. Rename the Divi 'Projects' post type to a user-defined name.
  * Author:              Digital Shed45 - Gareth J M Saunders
  * Author URI:          https://digitalshed45.co.uk
  * Text domain:         wp-divi-rename-project-cpt
  * Domain Path:         /languages/
  * Requires at least:   5.3
- * Tested up to:        6.6.1
+ * Tested up to:        6.6.2
  * License:             GPL3
  * License URI:         https://www.gnu.org/licenses/gpl-3.0.html
  */
