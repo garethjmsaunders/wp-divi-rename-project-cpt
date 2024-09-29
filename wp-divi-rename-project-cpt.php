@@ -1381,9 +1381,46 @@ function divi_projects_cpt_rename_register_new_values() {
         ],
     ] );
 
+    
+    /**
+    * Replace "Skills" with Tag Plural Name
+    * If the Divi Builder is not used for a "Project" post it displays the word "Skills"
+    * above the list of Project tags in the meta section above the post date.
+    * 
+    * This function filters the HTML output of the project meta section to replace the
+    * "Skills" heading with the custom Tag Plural Name set in the plugin options.
+    *
+    * @param string $content The HTML content of the project meta section.
+    * @return string The modified content with the updated tag plural name.
+    */
+    // Start output buffering before WordPress renders the page content
+    add_action( 'template_redirect', 'divi_projects_cpt_start_buffer' );
+
+    function divi_projects_cpt_start_buffer() {
+        // Start output buffering only on single project pages
+        if ( is_singular( 'project' ) ) {
+            ob_start( 'divi_projects_cpt_replace_skills_heading' );
+        }
+    }
+
+    // Function to replace the "Skills" label
+    function divi_projects_cpt_replace_skills_heading( $buffer ) {
+        // Get the custom plural tag name from your plugin settings
+        $custom_tag_plural_name = divi_projects_cpt_rename_get_tag_plural_name();
+
+        // The HTML string to search for (this is the default output for "Skills")
+        $default_skills_label = '<strong class="et_project_meta_title">Skills</strong>';
+
+        // Replace "Skills" with the custom plural tag name
+        $custom_label = '<strong class="et_project_meta_title">' . esc_html( $custom_tag_plural_name ) . '</strong>';
+
+        // Replace the default "Skills" label with the custom one
+        return str_replace( $default_skills_label, $custom_label, $buffer );
+    }
+
 
     /**
-     * Flushes the WordPress rewrite (permalink) rules.
+     * Flush the WordPress rewrite (permalink) rules.
      *
      * This function clears the rewrite rules and rebuilds them based on the current
      * configuration of custom post types, taxonomies, and other URL structures. It
