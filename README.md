@@ -1,6 +1,34 @@
 # Rename Divi Projects
 
-A plugin to rename the Divi theme Project custom post type to a user-defined name
+Unlock the full potential of Divi Projects to make your site truly unique!
+
+
+
+
+## About
+
+Rename Divi Projects is the perfect tool for customizing Divi’s default Projects post type to suit your unique needs. Completely transform the built-in Divi Projects into any type of content that fits your website.
+
+Wouldn’t it be great to be able to change the project post type URL from 'project' to 'property' or 'book' or 'album' or anything you like, while keeping the functionality of the three Divi portfolio modules:
+
+* [Portfolio](https://www.elegantthemes.com/modules/portfolio/)
+* [Filterable Portfolio](https://www.elegantthemes.com/modules/filterable-portfolio/)
+* [Fullwidth Portfolio](https://www.elegantthemes.com/modules/portfolio-carousel/) (Carousel)
+
+Rename Divi Projects allows you to do this quickly, simply and without any coding.
+
+### Customize the name
+
+Change the default "Projects" post type to anything—properties, portfolios, books, or conferences—saving time and simplifying site management.
+
+### Features
+
+* **Choose your menu icon** Select a custom icon to better represent your new post type in the WordPress admin menu.
+* **Modify slugs** Update the URL structure to reflect your new post type, keeping everything SEO-friendly.
+* **Category and Tag control** Rename and re-slug your categories and tags to match your new custom post type
+* **Why is this useful?** Perhaps your website showcases holiday letting properties, or advertises the books you have written, or you are in a band and want to display the albums you have released. It doesn’t make much sense semantically to list these as 'projects'.
+
+
 
 
 ## Documentation
@@ -176,7 +204,7 @@ Once you have made your edits, click the Save Changes button to update the "Proj
 
 The changes should happen immediately. Anything that once had a URL of /project/ will now have your new custom post slug. Should this not happen, first go to Settings > Permalinks and click Save Changes there to flush the permalinks (slug) cache.
 
----
+
 
 ### Reset to defaults
 
@@ -187,12 +215,12 @@ To reset the custom post type to the default Divi "Project" settings:
 
 Your custom post type values will be kept in the database until to reactive the plugin again.
 
-
 #### Deleting the plugin
 
 When you delete the plugin from the Plugins screen, all your custom post type settings for the Project post type will then be deleted from the database.
 
----
+
+
 
 ## How it works
 
