@@ -47,10 +47,9 @@ function divi_projects_cpt_rename_check_divi_theme_on_activation() {
         deactivate_plugins( plugin_basename( __FILE__ ) );
         
         // Display an error message and stop the activation process.
-        wp_die( 
-            __( 'This plugin requires the Divi theme from Elegant Themes to be active. Please activate the Divi theme and try again.',
-            'wp-divi-rename-project-cpt' ),
-            'Plugin Activation Error',
+        wp_die(
+            esc_html__( 'This plugin requires the Divi theme from Elegant Themes to be active. Please activate the Divi theme and try again.', 'wp-divi-rename-project-cpt' ),
+            esc_html__( 'Plugin Activation Error', 'wp-divi-rename-project-cpt' ),
             array( 'back_link' => true )
         );
 
