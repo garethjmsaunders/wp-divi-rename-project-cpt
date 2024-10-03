@@ -359,9 +359,8 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
 
     // Verify the nonce to protect against Cross-Site Request Forgery (CSRF) attacks.
     // If the nonce is invalid, terminate the script with an error message.
-    if ( ! isset( $_POST['divi_projects_cpt_rename_options_nonce'] ) || 
-    ! wp_verify_nonce( $_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify' ) ) {
-    wp_die( esc_html__( 'Nonce verification failed.', 'wp-divi-rename-project-cpt' ) );
+    if ( ! isset( $_POST['divi_projects_cpt_rename_options_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_POST['divi_projects_cpt_rename_options_nonce'] ), 'divi_projects_cpt_rename_options_verify' ) ) {
+        wp_die( esc_html__( 'Nonce verification failed.', 'wp-divi-rename-project-cpt' ) );
     }
 
 
