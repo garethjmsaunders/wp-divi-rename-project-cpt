@@ -360,9 +360,10 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
     // Verify the nonce to protect against Cross-Site Request Forgery (CSRF) attacks.
     // If the nonce is invalid, terminate the script with an error message.
     if ( ! isset( $_POST['divi_projects_cpt_rename_options_nonce'] ) || 
-        ! wp_verify_nonce( $_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify' ) ) {
-        wp_die( __( 'Nonce verification failed.', 'wp-divi-rename-project-cpt' ) );
+    ! wp_verify_nonce( $_POST['divi_projects_cpt_rename_options_nonce'], 'divi_projects_cpt_rename_options_verify' ) ) {
+    wp_die( esc_html__( 'Nonce verification failed.', 'wp-divi-rename-project-cpt' ) );
     }
+
 
     // Initialize the array for sanitized settings
     $sanitized_settings = array();
@@ -1110,13 +1111,13 @@ function divi_projects_cpt_rename_options_page() {
         // User should not be able to access this plugin admin page as it is
         // listed under Settings but this will double check.
         // If the user doesn't have the capability, display an error message and exit.
-        wp_die( __( 'You do not have sufficient permissions to access this page.', 'wp-divi-rename-project-cpt' ) );
+        wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'wp-divi-rename-project-cpt' ) );
     }
     ?>
     <form action="options.php" method="post">
 
     <header class="divi-purple">
-        <h1><?php _e( 'Rename Divi Projects', 'wp-divi-rename-project-cpt' ); ?> | <span class="plugin-version"> v<?php $plugin_data = get_plugin_data(__FILE__); $plugin_version = $plugin_data['Version']; echo esc_html($plugin_version); ?></span></h1>
+        <h1><?php esc_html_e( 'Rename Divi Projects', 'wp-divi-rename-project-cpt' ); ?> | <span class="plugin-version"> v<?php $plugin_data = get_plugin_data(__FILE__); $plugin_version = $plugin_data['Version']; echo esc_html($plugin_version); ?></span></h1>
     </header>
 
         <?php
@@ -1125,8 +1126,8 @@ function divi_projects_cpt_rename_options_page() {
             wp_nonce_field( 'divi_projects_cpt_rename_options_verify', 'divi_projects_cpt_rename_options_nonce' );
             submit_button();
         ?>
-        <h2><?php _e( 'Reset to defaults', 'wp-divi-rename-project-cpt' ); ?></h2>
-        <p class="reset"><?php _e( 'To', 'wp-divi-rename-project-cpt' ); ?> <strong><?php _e( 'reset', 'wp-divi-rename-project-cpt' ); ?></strong> <?php _e( 'this custom post type to the default Divi Project settings (1) navigate to', 'wp-divi-rename-project-cpt' ); ?> <a href="<?php echo admin_url( 'plugins.php' ); ?>"><?php _e( 'Plugins', 'wp-divi-rename-project-cpt' ); ?></a> <?php _e( 'and deactivate the', 'wp-divi-rename-project-cpt' ); ?> <strong><?php _e( 'Rename Divi Projects post type', 'wp-divi-rename-project-cpt' ); ?></strong> <?php _e( 'plugin then (2) go to', 'wp-divi-rename-project-cpt' ); ?> <a href="options-permalink.php" target="_blank"><?php _e( 'Settings &gt; Permalinks', 'wp-divi-rename-project-cpt' ); ?></a> <?php _e( 'and click the Save Changes button to flush the rewrite rules cache.', 'wp-divi-rename-project-cpt' ); ?></p>
+        <h2><?php esc_html_e( 'Reset to defaults', 'wp-divi-rename-project-cpt' ); ?></h2>
+        <p class="reset"><?php esc_html_e( 'To', 'wp-divi-rename-project-cpt' ); ?> <strong><?php esc_html_e( 'reset', 'wp-divi-rename-project-cpt' ); ?></strong> <?php esc_html_e( 'this custom post type to the default Divi Project settings (1) navigate to', 'wp-divi-rename-project-cpt' ); ?> <a href="<?php echo esc_url( admin_url( 'plugins.php' ) ); ?>"><?php esc_html_e( 'Plugins', 'wp-divi-rename-project-cpt' ); ?></a> <?php esc_html_e( 'and deactivate the', 'wp-divi-rename-project-cpt' ); ?> <strong><?php esc_html_e( 'Rename Divi Projects post type', 'wp-divi-rename-project-cpt' ); ?></strong> <?php esc_html_e( 'plugin then (2) go to', 'wp-divi-rename-project-cpt' ); ?> <a href="options-permalink.php" target="_blank"><?php esc_html_e( 'Settings &gt; Permalinks', 'wp-divi-rename-project-cpt' ); ?></a> <?php esc_html_e( 'and click the Save Changes button to flush the rewrite rules cache.', 'wp-divi-rename-project-cpt' ); ?></p>
     </form>
     <?php
 }
