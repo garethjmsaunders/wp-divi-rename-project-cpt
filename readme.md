@@ -231,3 +231,9 @@ The plugin seamlessly integrates with the existing Divi ecosystem, allowing you 
 **For developers**, the plugin works by dynamically registering the new values through WordPress’ register_post_type and register_taxonomy functions. It modifies the post type labels, slugs, and associated taxonomies, ensuring your changes are implemented site-wide. The plugin also automatically flushes WordPress rewrite rules, ensuring that any changes to your custom slugs are reflected immediately without manual intervention.
 
 Whether you’re a seasoned developer or a WordPress beginner, Rename Divi Projects takes care of the heavy lifting, allowing you to fully customize Divi Projects in just a few clicks.
+
+
+## Changelog
+
+v1.0.10 | 2024-10-03 | FIX
+Ensure outputs go through escaping functions and sanitize input variable $_POST.
