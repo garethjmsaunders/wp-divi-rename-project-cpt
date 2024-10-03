@@ -354,7 +354,7 @@ function divi_projects_cpt_rename_sanitize_settings( $settings ) {
     // Check if the current user has the capability to manage options.
     // If not, terminate the script with an error message.
     if ( ! current_user_can( 'manage_options' ) ) {
-        wp_die( __( 'You do not have sufficient permissions to access this page.', 'wp-divi-rename-project-cpt' ) );
+        wp_die( esc_html__( 'You do not have sufficient permissions to access this page.', 'wp-divi-rename-project-cpt' ) );
     }
 
     // Verify the nonce to protect against Cross-Site Request Forgery (CSRF) attacks.
